@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Texyla</title>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+	<!-- css -->
+	<style type="text/css">
+	body {font:80%/1.3em "Segoe UI", sans-serif;}
+	</style>
+	<link rel="stylesheet" href="texyla/css/style.css" type="text/css">
+	<link rel="stylesheet" href="themes/default/theme.css" type="text/css">
+	<!-- jQuery -->
+	<script src="jquery/jquery.js" type="text/javascript"></script>
+	<script src="jquery/jquery.ui.js" type="text/javascript"></script>
+
+	<!-- JUSH -->
+	<script src="jquery/jush/jquery.jush.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="jquery/jush/jush.css" type="text/css">
+
+	<!-- Texyla -->
+	<script src="texyla/texyla.js" type="text/javascript"></script>
+
+	<!-- init -->
+	<script type="text/javascript">
+		//<![CDATA[
+
+		$(function () {
+			$.texyla("setDefaults", {
+				// language: "en"
+			});
+
+			$("#text2").texyla({
+				toolbar: [
+					'h1', 'h2', 'h3', 'h4',
+					null,
+					'bold', 'italic',
+					null,
+					'center', ['left', 'right', 'justify'],
+					null,
+					'ul', 'ol',
+					null,
+					'link', 'img', 'table', 'emoticon',
+					null,
+					"files",
+					null,
+					'div', ['html', 'blockquote', 'text', 'comment'],
+					null,
+					'code',	['codeHtml', 'codeCss', 'codeJs', 'codePhp', 'codeSql'], 'codeInline',
+					null,
+					{type: "label", text: "Ostatní"}, ['sup', 'sub', 'del', 'acronym', 'hr', 'notexy', 'web']
+				],
+				bottomLeftToolbar: ['edit', 'preview', 'htmlPreview'],
+				tabs: true,
+				texyCfg: "admin",
+				width: 800
+			});
+
+			$.texyla({
+				texyCfg: "forum",
+				buttonType: "button"
+
+			});
+		});
+		//]]>
+	</script>
+</head>
+<body>
+<form method="post" action="process.php">
+
+<div>
+<textarea name="text" rows="10" cols="70" id="text">Vítejte!
+--------
+
+Můžete používat syntax Texy!, pokud Vám vyhovuje:
+- třeba **tučné** písmo nebo *kurzíva*
+- a takto se dělá "odkaz":http://texy.info
+- více najdete na stránce syntax:[syntax]
+
+
+Ale také můžete zůstat u HTML:
+- takto &lt;b&gt;HTML&lt;/b&gt;
+- nebo i &lt;b class=xx&gt;úplně &lt;i&gt;hloupě&lt;/b&gt;, Texy! to pořeší
+
+
+[syntax]: /cs/syntax</textarea><br><br>
+
+<textarea name="text2" rows="10" cols="70" id="text2">
+Texyla
+======
+- Toto je "Texyla":http://texyla.janmarek.net/ jako dělaná pro administračního rozhraní ;-)
+- Račte si **vyzkoušet**...</textarea>
+</div>
+
+<p><input type="submit" value="Odeslat"></p>
+</form>
+</body>
+</html>

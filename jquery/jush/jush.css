@@ -1,0 +1,28 @@
+.jush { color: Black; }
+.jush-htm_com, .jush-com, .jush-one, .jush-php_com, .jush-php_one, .jush-js_one { color: Gray; }
+.jush-php { color: #000033; background-color: #FFF0F0; }
+.jush-php_quo, .jush-quo, .jush-php_eot, .jush-apo, .jush-py_rlapo, .jush-py_rlquo, .jush-py_rapo, .jush-py_rquo, .jush-py_lapo, .jush-py_lquo, .jush-sql_apo, .jush-sqlite_apo, .jush-sql_quo, .jush-sqlite_quo, .jush-sql_eot { color: Green; }
+.jush-php_apo { color: #009F00; }
+.jush-php_quo_var, .jush-php_var, .jush-sql_var { font-style: italic; }
+.jush-php_halt2 { background-color: White; color: Black; }
+.jush-tag_css, .jush-att_css .jush-att_quo, .jush-att_css .jush-att_apo, .jush-att_css .jush-att_val { color: Black; background-color: #FFFFE0; }
+.jush-tag_js, .jush-att_js .jush-att_quo, .jush-att_js .jush-att_apo, .jush-att_js .jush-att_val, .jush-css_js { color: Black; background-color: #F0F0FF; }
+.jush-tag { color: Navy; }
+.jush-att, .jush-att_js, .jush-att_css { color: Teal; }
+.jush-att_quo, .jush-att_apo, .jush-att_val { color: Purple; }
+.jush-ent { color: Purple; }
+.jush-js_reg { color: Navy; }
+.jush-php_sql .jush-php_quo, .jush-php_sql .jush-php_apo,
+.jush-php_sqlite .jush-php_quo, .jush-php_sqlite .jush-php_apo,
+.jush-php_pgsql .jush-php_quo, .jush-php_pgsql .jush-php_apo
+{ background-color: #FFBBB0; }
+.jush-bac, .jush-php_bac, .jush-bra, .jush-pgsql .jush-sqlite_quo { color: Red; }
+.jush-num, .jush-clr { color: #007f7f; }
+
+.jush A:link, .jush A:visited { color: Navy; }
+.jush-tag A:link, .jush-tag A:visited,
+.jush-php_phpini .jush-php_apo A:link, .jush-php_phpini .jush-php_apo A:visited, .jush-php_phpini .jush-php_quo A:link, .jush-php_phpini .jush-php_quo A:visited,
+.jush-php_sql .jush-php_apo A:link, .jush-php_sql .jush-php_apo A:visited, .jush-php_sql .jush-php_quo A:link, .jush-php_sql .jush-php_quo A:visited,
+.jush-php_sqlite .jush-php_apo A:link, .jush-php_sqlite .jush-php_apo A:visited, .jush-php_sqlite .jush-php_quo A:link, .jush-php_sqlite .jush-php_quo A:visited,
+.jush-php_pgsql .jush-php_apo A:link, .jush-php_pgsql .jush-php_apo A:visited, .jush-php_pgsql .jush-php_quo A:link, .jush-php_pgsql .jush-php_quo A:visited
+{ color: inherit; color: expression(parentNode.currentStyle.color); }

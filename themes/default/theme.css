@@ -1,0 +1,15 @@
+@import "ui.css";
+
+/* texyla vzhled */
+div.texyla {background:#EEE;}
+div.texyla ul.toolbar li span:hover {background:url("button-vista.png") no-repeat 50% 50%;}
+div.texyla div.preview-wait {background:url("loader.gif") 10px 10px no-repeat;}
+
+/* dialog */
+.ui-dialog-content p.wait {background:url("loader.gif") 0 50% no-repeat;}
+
+/* menu */
+div.texyla ul.toolbar li ul li {padding:1px}
+div.texyla ul.toolbar li ul li.ui-state-hover {padding:0px}
+div.texyla ul.toolbar li.menu {background-image:url("menu.gif");}
+div.texyla ul.toolbar li.separator {background-image:url("separator.gif");}
