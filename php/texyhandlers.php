@@ -42,16 +42,16 @@ class TexyHandlers {
 			$movie = Texy::prependRoot($image->URL, $texy->imageModule->root);
 
 			$dimensions =
-				   ($image->width ? 'width="'.$image->width.'" ' : '')
-				. ($image->height ? 'width="'.$image->height.'" ' : '');
+				($image->width ? ' width="'.$image->width.'"' : '')
+				. ($image->height ? ' height="'.$image->height.'"' : '');
 
 			$movie = htmlSpecialChars($movie);
-			$altContent = htmlSpecialChars($image->modifier->title);
+			$altContent = $image->modifier->title ? "<p>" . htmlSpecialChars($image->modifier->title) . "</p>" : "";
 
 			// @see http://phpfashion.com/how-to-correctly-insert-a-flash-into-xhtml
 			$code = '
 	<!--[if !IE]> -->
-	<object type="application/x-shockwave-flash" data="'.$movie.'" '.$dimensions.'>
+	<object type="application/x-shockwave-flash" data="'.$movie.'"'.$dimensions.'>
 	<!-- <![endif]-->
 
 	<!--[if IE]>
@@ -60,7 +60,7 @@ class TexyHandlers {
 	<param name="movie" value="'.$movie.'" />
 	<!--><!--dgx-->
 
-		<p>'.$altContent.'</p>
+	'.$altContent.'
 	</object>
 	<!-- <![endif]-->
 	';
