@@ -19,7 +19,7 @@ $.texyla.addWindow("youtube", {
 			var key = "";
 
 			if (val.substr(0, 7) == "http://") {
-				var res = val.match("[?&]v=([a-zA-Z0-9-]+)");
+				var res = val.match("[?&]v=([a-zA-Z0-9_-]+)");
 				if (res) key = res[1];
 			} else {
 				key = val;
