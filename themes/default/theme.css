@@ -1,5 +1,3 @@
-@import "ui.css";
-
 /* texyla vzhled */
 div.texyla {background:#EEE;}
 div.texyla ul.toolbar li span:hover {background:url("button-vista.png") no-repeat 50% 50%;}

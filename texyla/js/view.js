@@ -90,8 +90,8 @@ Texyla.prototype.view = function(type, first) {
 			_this.htmlPreview.text(data.replace(new RegExp("\n", "g"), _this.texy.lf())).show();
 
 			// obarvit html pomocí JUSHe
-			if (typeof(_this.htmlPreview.jush) == "function") {
-				_this.htmlPreview.jush("htm");
+			if (jush) {
+				_this.htmlPreview.html(jush.highlight("htm", data));
 			}
 			
 			// schovat čekejte
