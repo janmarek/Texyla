@@ -29,7 +29,10 @@
 
 		$(function () {
 			$.texyla("setDefaults", {
-				// language: "en"
+				// language: "en",
+				texyCfg: "admin",
+                baseDir: '../../texyla',
+				previewPath: "preview.php"
 			});
 
 			$("#text2").texyla({

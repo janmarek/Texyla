@@ -1,5 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/texyla.php';
+
+require_once dirname(__FILE__) . '/texy.min.php';
+require_once dirname(__FILE__) . '/TexyHandlers.php';
 
 /**
  * Texyla pro administrační rozhranní
@@ -33,9 +35,9 @@ class AdminTexy extends Texy {
 		// smajlíky
 		$this->allowed['emoticon'] = true;
 		// texy
-		include dirname(__FILE__) . "/../emoticons/texy/cfg.php";
+		include dirname(__FILE__) . "/../../emoticons/texy/cfg.php";
 		// nebo silk
-		// include dirname(__FILE__) . "/../emoticons/silk/cfg.php";
+		// include dirname(__FILE__) . "/../../emoticons/silk/cfg.php";
 
 		// uživatelské handlery
 

@@ -3,7 +3,7 @@
 
 // kde hledat smajlíky
 // cesta pro html
-$this->emoticonModule->root = 'emoticons/silk/';
+$this->emoticonModule->root = '../../emoticons/silk/';
 // cesta pro php (kvůli rozměrům souborů)
 $this->emoticonModule->fileRoot = dirname(__FILE__);
 

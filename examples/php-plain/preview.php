@@ -1,18 +1,21 @@
 <?php
-require_once dirname(__FILE__) . "/libs/loader.php";
-require_once dirname(__FILE__) . "/texyla.php";
 
-$httpRequest = new HttpRequest;
-$httpResponse = new HttpResponse;
+$cfg = isset($_POST["cfg"]) ? $_POST["cfg"] : null;
 
-// validace cfg
-$rawCfg = $httpRequest->getPost("cfg");
-$cfg = ereg("^[a-z]+$", $rawCfg) ? $rawCfg : null;
+if ($cfg === "admin") {
+	require_once dirname(__FILE__) . "/../shared/AdminTexy.php";
+	$texy = new AdminTexy;
 
-// načtení třídy
-$texy = TexylaTools::getTexy($cfg);
+} elseif ($cfg === "forum") {
+	require_once dirname(__FILE__) . "/../shared/ForumTexy.php";
+	$texy = new ForumTexy;
 
-$httpResponse->setContentType("text/html", "utf-8");
+} else {
+	require_once dirname(__FILE__) . "/../shared/texy.min.php";
+	$texy = new Texy;
+}
 
-$texyCode = $httpRequest->getPost("texy");
-echo $texy->process($texyCode);
+header("Content-Type: text/html; charset=UTF-8");
+
+$code = get_magic_quotes_gpc() ? stripslashes($_POST["texy"]) : $_POST["texy"];
+echo $texy->process($code);
