@@ -1,0 +1,18 @@
+{default width => 450, height => 354}
+
+<div>
+	<object width="{$width}" height="{$height}">
+		<param name="movie" value="http://www.stream.cz/object/{$id}">
+		<param name="allowfullscreen" value="true">
+		<param name="allowscriptaccess" value="always">
+		<param name="wmode" value="transparent">
+		<embed
+			src="http://www.stream.cz/object/{$id}"
+			type="application/x-shockwave-flash"
+			wmode="transparent"
+			allowfullscreen="true"
+			allowscriptaccess="always"
+			width="{$width}"
+			height="{$height}">
+	</object>
+</div>

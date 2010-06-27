@@ -1,31 +1,29 @@
 <?php
-// nette
-require_once dirname(__FILE__) . "/../../libs/loader.php";
+
+use Nette\String, Nette\Web\HttpRequest;
+
+require_once dirname(__FILE__) . "/../../libs/nette.php";
+require_once dirname(__FILE__) . '/paths.php';
 
 $httpRequest = new HttpRequest;
 $folder = $httpRequest->getQuery("folder", "");
 
-/** cesty *********************************************************************/
-
-require_once dirname(__FILE__) . '/paths.php';
-
-$root = FILES_BASE_PATH;
+$root = realpath(FILES_BASE_PATH);
 $dir = realpath($root . "/" . $folder);
 
-/** kontroly ******************************************************************/
-
-// kontrola adresáře
+// check directory
 if ($root === false || $dir === false || !String::startsWith($dir, $root) || !is_dir($dir)) {
-	$state["error"] = "Problem with directory";
+	echo json_encode(array(
+		"error" => "Problem with directory."
+	));
+	exit;
 }
-
-/** vyhledání položek *********************************************************/
 
 $directories = array();
 $files = array();
 
-// nahoru
-if ($folder !== "") {
+// up
+if ($root !== $dir) {
 	$dirPieces = explode("/", $folder);
 	array_pop($dirPieces);
 
@@ -39,10 +37,9 @@ if ($folder !== "") {
 foreach (new DirectoryIterator($dir) as $fileInfo) {
 	$filename = $fileInfo->getFileName();
 
-	// přeskočit skryté soubory, . a ..
+	// skip hidden files, . and ..
 	if (String::startsWith($filename, ".")) continue;
 
-	// adresář
 	if ($fileInfo->isDir()) {
 		$directories[] = array(
 			"type" => "folder",
@@ -50,28 +47,28 @@ foreach (new DirectoryIterator($dir) as $fileInfo) {
 			"key" => ($folder ? "$folder/" : "") . $filename,
 		);
 
-	// soubor
 	} else {
 		$isImage = @getImageSize($fileInfo->getPathName()) ? true : false;
-		
+
 		if ($isImage) {
 			$files[] = array(
 				"type" => "image",
 				"name" => $filename,
 				"insertUrl" => FILES_IMAGE_INCLUDE_PREFIX . ($folder ? "$folder/" : "") . $filename,
-				"description" => "Image $filename",
-				"thumbailKey" => ($folder ? "$folder/" : "") . $filename,
+				"description" => "",
+				"thumbnailKey" => ($folder ? "$folder/" : "") . $filename,
 			);
 		} else {
 			$files[] = array(
 				"type" => "file",
 				"name" => $filename,
 				"insertUrl" => FILES_FILE_INCLUDE_PREFIX . ($folder ? "$folder/" : "") . $filename,
-				"description" => "File $filename",
+				"description" => "",
 			);
 		}
 	}
 }
 
-// output
-echo json_encode(array("list" => array_merge($directories, $files)));
+echo json_encode(array(
+	"list" => array_merge($directories, $files)
+));

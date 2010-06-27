@@ -1,13 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	"http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 	<title>Texyla</title>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-	<!-- css -->
+	
 	<style type="text/css">
 	body {font:80%/1.3em "Segoe UI", sans-serif;}
 	</style>
+
 	<link rel="stylesheet" href="../../texyla/css/style.css" type="text/css">
 	<link rel="stylesheet" href="../../themes/default/theme.css" type="text/css">
 
@@ -20,7 +20,7 @@
 	<script src="https://jush.svn.sourceforge.net/svnroot/jush/trunk/jush.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://jush.svn.sourceforge.net/svnroot/jush/trunk/jush.css">
 
-	<!-- Texyla - jádro -->
+	<!-- Texyla core -->
 	<script src="../../texyla/js/texyla.js" type="text/javascript"></script>
 	<script src="../../texyla/js/selection.js" type="text/javascript"></script>
 	<script src="../../texyla/js/texy.js" type="text/javascript"></script>
@@ -29,12 +29,12 @@
 	<script src="../../texyla/js/view.js" type="text/javascript"></script>
 	<script src="../../texyla/js/ajaxupload.js" type="text/javascript"></script>
 
-	<!-- jazyky -->
+	<!-- languages -->
 	<script src="../../texyla/languages/cs.js" type="text/javascript"></script>
 	<script src="../../texyla/languages/sk.js" type="text/javascript"></script>
 	<script src="../../texyla/languages/en.js" type="text/javascript"></script>
 
-	<!-- pluginy -->
+	<!-- plugins -->
 	<script src="../../texyla/plugins/keys/keys.js" type="text/javascript"></script>
 	<script src="../../texyla/plugins/window/window.js" type="text/javascript"></script>
 	<script src="../../texyla/plugins/resizableTextarea/resizableTextarea.js" type="text/javascript"></script>
@@ -52,13 +52,16 @@
 	<script type="text/javascript">
 		//<![CDATA[
 		
-		$(function () {
-			$.texyla.setDefaults({
-				texyCfg: "admin",
-                baseDir: '../../texyla',
-				previewPath: "preview.php"
-			});
-			
+		$.texyla.setDefaults({
+			texyCfg: "admin",
+			baseDir: '../../texyla',
+			previewPath: "preview.php",
+			filesPath: "filesplugin/files.php",
+			filesThumbPath: "filesplugin/thumbnail.php?image=%var%",
+			filesUploadPath: "filesplugin/files/upload.php"
+		});
+		
+		$(function () {			
 			$("#text2").texyla({
 				toolbar: [
 					'h1', 'h2', 'h3', 'h4',

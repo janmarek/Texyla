@@ -156,7 +156,7 @@ Texyla.prototype.defaultOptions = {
 	// cesta k ikonkám
 	iconPath: "%texyla_base%/icons/%var%.png",
 	// cesta k náhledu
-	previewPath: "%texyla_base%/../php/preview.php",
+	previewPath: null,
 	// jazyk
 	language: "cs"
 };

@@ -3,15 +3,15 @@
 $cfg = isset($_POST["cfg"]) ? $_POST["cfg"] : null;
 
 if ($cfg === "admin") {
-	require_once dirname(__FILE__) . "/../shared/AdminTexy.php";
+	require_once __DIR__ . "/AdminTexy.php";
 	$texy = new AdminTexy;
 
 } elseif ($cfg === "forum") {
-	require_once dirname(__FILE__) . "/../shared/ForumTexy.php";
+	require_once __DIR__ . "/ForumTexy.php";
 	$texy = new ForumTexy;
 
 } else {
-	require_once dirname(__FILE__) . "/../shared/texy.min.php";
+	require_once __DIR__ . "/../libs/texy.min.php";
 	$texy = new Texy;
 }
 

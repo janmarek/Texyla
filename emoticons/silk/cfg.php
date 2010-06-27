@@ -1,13 +1,13 @@
 <?php
-// smajlíky silk - konfigurák
 
-// kde hledat smajlíky
-// cesta pro html
-$this->emoticonModule->root = '../../emoticons/silk/';
-// cesta pro php (kvůli rozměrům souborů)
+/**
+ * example configuration for silk emoticons
+ */
+
+$this->allowed['emoticon'] = true;
+
+$this->emoticonModule->root = '/emoticons/silk/';
 $this->emoticonModule->fileRoot = dirname(__FILE__);
-
-// ikony
 $this->emoticonModule->icons = array(
 	':-)' => 'smile.png',
 	':-(' => 'unhappy.png',

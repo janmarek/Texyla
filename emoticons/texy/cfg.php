@@ -1,13 +1,13 @@
 <?php
-// smajlíky texy (výchozí) - konfigurák
 
-// kde hledat smajlíky
-// cesta pro html
-$this->emoticonModule->root = '../../emoticons/texy/';
-// cesta pro php (kvůli rozměrům souborů)
+/**
+ * example configuration for texy emoticons
+ */
+
+$this->allowed['emoticon'] = true;
+
+$this->emoticonModule->root = '/emoticons/texy/';
 $this->emoticonModule->fileRoot = dirname(__FILE__);
-
-// ikony
 $this->emoticonModule->icons = array(
 	':-)' => 'smile.gif',
 	':-(' => 'sad.gif',

@@ -1,0 +1,14 @@
+{default width => 425, height => 350}
+
+<div>
+	<object width="{$width}" height="{$height}">
+		<param name="movie" value="http://www.youtube.com/v/{$id}">
+		<param name="wmode" value="transparent">
+		<embed
+			src="http://www.youtube.com/v/{$id}"
+			type="application/x-shockwave-flash"
+			wmode="transparent"
+			width="{$width}"
+			height="{$height}">
+	</object>
+</div>

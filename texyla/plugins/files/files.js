@@ -2,10 +2,10 @@
 
 // nastavení cesty
 $.texyla.setDefaults({
-	filesPath: "%texyla_base%/../php/plugins/files/files.php",
-	filesThumbPath: "%texyla_base%/../php/plugins/files/thumbs.php?image=%var%",
+	filesPath: null,
+	filesThumbPath: null,
 	filesIconPath: "%texyla_base%/plugins/files/icons/%var%.png",
-	filesUploadPath: "%texyla_base%/../php/plugins/files/upload.php"
+	filesUploadPath: null
 });
 
 $.texyla.initPlugin(function () {
@@ -101,8 +101,13 @@ $.texyla.addWindow("files", {
 				cache: false,
 				url: _this.options.filesPath,
 				data: {folder: currentDir},
-				success: function (data) {
+				success: function (data) {					
 					gallery.empty();
+
+					if (data.error) {
+						_this.error(data.error);
+						return;
+					}
 					upload.show();
 
 					var list = data.list;
@@ -138,7 +143,7 @@ $.texyla.addWindow("files", {
 								item.click(createInsertImageFunc(list[i]));
 
 								item.find(".image").append(
-									'<image src="' + _this.expand(_this.options.filesThumbPath, list[i].thumbailKey) + '">'
+									'<image src="' + _this.expand(_this.options.filesThumbPath, list[i].thumbnailKey) + '">'
 								);
 
 								item.find(".label").append(

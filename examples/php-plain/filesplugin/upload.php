@@ -1,6 +1,9 @@
 <?php
-// nette
-require_once dirname(__FILE__) . "/../../libs/loader.php";
+
+use Nette\Web\HttpRequest, Nette\String;
+
+require_once dirname(__FILE__) . "/../../libs/nette.php";
+require_once dirname(__FILE__) . '/paths.php';
 
 $httpRequest = new HttpRequest;
 $file = $httpRequest->getFile("file");
@@ -8,34 +11,26 @@ $folder = $httpRequest->getPost("folder", "");
 
 $state = array();
 
-/** cesty *********************************************************************/
+$root = realpath(FILES_BASE_PATH);
+$dir = realpath(FILES_BASE_PATH . "/" . $folder);
 
-require_once dirname(__FILE__) . "/paths.php";
-
-$root = FILES_BASE_PATH;
-$dir = realpath($root . "/" . $folder);
-
-/** kontroly ******************************************************************/
-
-//kontrola oprávnění
+// security check
 //if (!$allowed) {
-//	$state["error"] = "You are not allowed to upload";
+//	$state["error"] = "You are not allowed to upload files.";
 //}
 
 if (empty($file)) {
 	$state["error"] = "No file was uploaded";
 }
 
-// kontrola adresáře
-if ($root === false || $dir === false || !String::startsWith($dir, $root) || !is_dir($dir)) {
-	$state["error"] = "Problem with directory to upload";
+// check directory
+if ($root === false || $dir === false || !String::startsWith($dir, $root) || !is_dir($dir) || !is_writable($dir)) {
+	$state["error"] = "Problem with directory to upload.";
 }
 
 if (!empty($state["error"])) {
 	die(json_encode($state));
 }
-
-/** nahrávání souboru *********************************************************/
 
 if ($file->isOk()) {
 	$filename = String::webalize($file->getName(), ".");
