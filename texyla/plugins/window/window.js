@@ -1,4 +1,4 @@
-$.texyla.initPlugin(function () {
+jQuery.texyla.initPlugin(function () {
 	// seznam otevřených oken
 	// 		název: jQuery objekt
 	this.openedWindows = {};
@@ -8,23 +8,23 @@ $.texyla.initPlugin(function () {
  *	Přidat okno
  *	bude možné zavolat $.texyla.addWindow({title: "Okno", ...});
  */
-$.texyla.addWindow = function (name, options) {
+jQuery.texyla.addWindow = function (name, options) {
 	Texyla.prototype.windowConfigs[name] = options;
 	
 	// nastavit velikosti okna
 	if (options.dimensions) {
 		var defaults = {};
 		defaults[name + "WindowDimensions"] = options.dimensions;
-		$.texyla.setDefaults(defaults);
+		jQuery.texyla.setDefaults(defaults);
 	}
 
 	// přidat tlačítko
-	$.texyla.addButton(name, function () {
+	jQuery.texyla.addButton(name, function () {
 		this.openWindow(name);
 	});
 };
 
-$.texyla.extend({
+jQuery.texyla.extend({
 	// možná okna
 	windowConfigs: {},
 

@@ -2,7 +2,7 @@
  * Slovenský překlad
  * @author Jod
  */
-$.texyla.addStrings("sk", {
+jQuery.texyla.addStrings("sk", {
 	// popisy tlačítok
 	btn_h1: "Najvä\u010dší nadpis",
 	btn_h2: "Ve\u013eký nadpis",

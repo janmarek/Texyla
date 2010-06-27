@@ -1,6 +1,6 @@
-$.texyla.addWindow("textTransform", {
+jQuery.texyla.addWindow("textTransform", {
 	createContent: function () {
-		return $(
+		return jQuery(
 			"<div><form>" +
 			"<label><input type='radio' name='changeCase' value='lower'> " + this.lng.textTransformLower + "</label><br>" +
 			"<label><input type='radio' name='changeCase' value='upper'> " + this.lng.textTransformUpper + "</label><br>" +

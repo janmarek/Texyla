@@ -1,7 +1,7 @@
 /**
  * Český překlad
  */
-$.texyla.addStrings("cs", {
+jQuery.texyla.addStrings("cs", {
 	// popisy tlačítek
 	btn_h1: "Nejv\u011bt\u0161í nadpis",
 	btn_h2: "Velký nadpis",

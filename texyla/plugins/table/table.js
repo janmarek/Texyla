@@ -1,4 +1,4 @@
-$.texyla.addWindow("table", {
+jQuery.texyla.addWindow("table", {
 	dimensions: [320, 200],
 
 	action: function (cont) {
@@ -8,7 +8,7 @@ $.texyla.addWindow("table", {
 	createContent: function () {
 		var _this = this;
 
-		var cont = $(
+		var cont = jQuery(
 			"<div style='position:relative'>" +
 				'<table class="table"><tbody>' +
 				'<tr><th><label>' + this.lng.tableCols + '</label></th><td><input type="number" class="cols" size="3" maxlength="2" min="1" value="2"></td></tr>' +

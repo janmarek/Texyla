@@ -1,5 +1,5 @@
 // Zvětšovací textarea
-$.texyla.initPlugin(function () {
+jQuery.texyla.initPlugin(function () {
 	// pokud není načteno jQuery UI resizable, nic se nedělá
 	if (typeof(this.textarea.resizable) != "function") return;
 

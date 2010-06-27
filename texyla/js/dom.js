@@ -26,7 +26,7 @@ Texyla.prototype.wrap = function () {
 	this.textareaHeight = this.textarea.get(0).offsetHeight;
 
 	/* div s náhledem */
-	this.previewDiv = $('<div class="preview-div"></div>').insertAfter(this.editDiv);
+	this.previewDiv = jQuery('<div class="preview-div"></div>').insertAfter(this.editDiv);
 	// hlavička
 	this.previewDiv.prepend(
 		'<div class="view-header" style="background-image: url(\'' +
@@ -34,12 +34,12 @@ Texyla.prototype.wrap = function () {
 		this.lng.btn_preview + '</div>'
 	);
 
-	this.preview = $('<div class="preview"></div>')
+	this.preview = jQuery('<div class="preview"></div>')
 		.appendTo(this.previewDiv)
 		.wrap('<div class="preview-wrapper ui-widget-content"></div>');
 
 	/* div s html náhledem */
-	this.htmlPreviewDiv = $('<div class="html-preview-div"></div>').insertAfter(this.previewDiv);
+	this.htmlPreviewDiv = jQuery('<div class="html-preview-div"></div>').insertAfter(this.previewDiv);
 	// hlavička
 	this.htmlPreviewDiv.prepend(
 		'<div class="view-header" ' +
@@ -47,13 +47,13 @@ Texyla.prototype.wrap = function () {
 		this.lng.btn_htmlPreview + '</div>'
 	);
 
-	this.htmlPreview = $('<pre class="html-preview"></pre>')
+	this.htmlPreview = jQuery('<pre class="html-preview"></pre>')
 		.appendTo(this.htmlPreviewDiv)
 		.wrap('<div class="preview-wrapper ui-widget-content"></div>');
 
 
 	// čekejte
-	this.wait = $('<div class="preview-wait">' + this.lng.wait + '</div>');
+	this.wait = jQuery('<div class="preview-wait">' + this.lng.wait + '</div>');
 
 	// vyrobím tlačítka
 	this.createToolbar();
@@ -68,7 +68,7 @@ Texyla.prototype.wrap = function () {
  */
 Texyla.prototype.createToolbar = function () {
 	// lišta
-	var toolbar = $('<ul class="toolbar"></ul>').prependTo(this.editDiv);
+	var toolbar = jQuery('<ul class="toolbar"></ul>').prependTo(this.editDiv);
 	var item, toolbar2;
 
 	// prochází lištu
@@ -78,7 +78,7 @@ Texyla.prototype.createToolbar = function () {
 
 		// tlačítko
 		if (typeof item == "string") {
-			$(
+			jQuery(
 				"<span title='" + this.lng["btn_" + item] + "'>" +
 				"<img src='" + this.expand(this.options.iconPath, item) +
 				"' width='" + this.options.iconWidth + "' height='" + this.options.iconHeight + "'>" +
@@ -95,35 +95,35 @@ Texyla.prototype.createToolbar = function () {
 		}
 
 		// podmenu
-		else if ($.isArray(item)) {
-			toolbar2 = $("<ul class='ui-widget-content ui-corner-all'></ul>");
+		else if (jQuery.isArray(item)) {
+			toolbar2 = jQuery("<ul class='ui-widget-content ui-corner-all'></ul>");
 			var menuTimeout;
 			toolbar2.appendTo("<li class='menu'></li>").parent().mouseover(function () {
 				// prevence proti zmizení
 				clearTimeout(menuTimeout);
 				// schovat ostatní menu
-				$(this).siblings().find("ul:visible").fadeOut("fast");
+				jQuery(this).siblings().find("ul:visible").fadeOut("fast");
 				// zobrazit
-				$(this).find("ul").show();
+				jQuery(this).find("ul").show();
 			}).mouseout(function () {
 				// po chvíli zmizí
 				var _this = this;
 				menuTimeout = setTimeout(function () {
-					$(_this).find("ul").fadeOut("fast");
+					jQuery(_this).find("ul").fadeOut("fast");
 				}, 300);
 			}).appendTo(toolbar);
 
 			// jednotlivé položky v menu
 			for (var j = 0; j < item.length; j++) {
-				$(
+				jQuery(
 					"<li class='btn_" + item[j] + " ui-corner-all'>" +
 					"<span style='background-image: url(\"" + this.expand(this.options.iconPath, item[j]) + "\");'>" +
 					this.lng["btn_" + item[j]] + "</span></li>"
 				)
 					.hover(function () {
-						$(this).addClass("ui-state-hover");
+						jQuery(this).addClass("ui-state-hover");
 					}, function () {
-						$(this).removeClass("ui-state-hover");
+						jQuery(this).removeClass("ui-state-hover");
 					})
 					.click(this.clickButton(item[j]))
 					.appendTo(toolbar2);
@@ -161,11 +161,11 @@ Texyla.prototype.clickButton = function (name) {
  */
 Texyla.prototype.createBottomToolbar = function () {
 	// vytvořit lišty
-	var bottomToolbar = $("<div class='bottom-toolbar'></div>").appendTo(this.container);
-	this.leftToolbar = $("<div class='left-toolbar'></div>").appendTo(bottomToolbar);
-	var right = $('<div class="right-toolbar"></div>').appendTo(bottomToolbar);
-	this.rightEditToolbar = $("<div class='right-edit-toolbar'></div>").appendTo(right);
-	this.rightPreviewToolbar = $("<div class='right-preview-toolbar'></div>").appendTo(right);
+	var bottomToolbar = jQuery("<div class='bottom-toolbar'></div>").appendTo(this.container);
+	this.leftToolbar = jQuery("<div class='left-toolbar'></div>").appendTo(bottomToolbar);
+	var right = jQuery('<div class="right-toolbar"></div>').appendTo(bottomToolbar);
+	this.rightEditToolbar = jQuery("<div class='right-edit-toolbar'></div>").appendTo(right);
+	this.rightPreviewToolbar = jQuery("<div class='right-preview-toolbar'></div>").appendTo(right);
 
 	// přidat CSS třídy
 
@@ -191,21 +191,21 @@ Texyla.prototype.createBottomToolbar = function () {
 
 		// tlačítko typu span
 		if (_this.options.buttonType == "span" || tabs) {
-			return $(
+			return jQuery(
 				"<span class='btn btn_" + icon + " ui-state-default " + (tabs ? "ui-corner-bottom" : "ui-corner-all") + "'>" +
 					"<span class='btn-left'></span><span class='btn-middle'>" +
 					"<span style='background-image: url(\"" +  iconUrl + "\");' class='icon-span'>" + name + "</span>" +
 					"</span><span class='btn-right'></span>" +
 				"</span>"
 			).click(func).hover(function () {
-					$(this).addClass("ui-state-hover");
+					jQuery(this).addClass("ui-state-hover");
 			}, function () {
-					$(this).removeClass("ui-state-hover");
+					jQuery(this).removeClass("ui-state-hover");
 			});
 
 		// klasické tlačítko
 		} else {
-			return $(
+			return jQuery(
 				"<button type='button' class='btn_" + icon + "'>" +
 				"<img src='" + iconUrl + "' width='" + _this.options.iconWidth + "' height='" + _this.options.iconHeight + "'>" +
 				" " + name + "</button>"

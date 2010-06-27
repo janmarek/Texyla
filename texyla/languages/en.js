@@ -1,7 +1,7 @@
 /**
  * English translation
  */
-$.texyla.addStrings("en", {
+jQuery.texyla.addStrings("en", {
 	// buttons
 	btn_h1: "The biggest heading",
 	btn_h2: "Big heading",

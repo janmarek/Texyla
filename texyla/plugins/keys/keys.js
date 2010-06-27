@@ -1,16 +1,16 @@
 // ovládání klávesami
 
 // funkce zavádějící ovládání klávesami
-$.texyla.initPlugin(function () {
+jQuery.texyla.initPlugin(function () {
 	var _this = this;
 
-	this.textarea.bind($.browser.opera ? "keypress" : "keydown", function(e) {
+	this.textarea.bind(jQuery.browser.opera ? "keypress" : "keydown", function(e) {
 		_this.keys(e);
 	});
 });
 
 
-$.texyla.extend({
+jQuery.texyla.extend({
 	keys: function(e) {
 		var pressedKey = e.charCode || e.keyCode || -1;
 	

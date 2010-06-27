@@ -1,5 +1,5 @@
 // Výchozí zvláštní znaky
-$.texyla.setDefaults({
+jQuery.texyla.setDefaults({
 	symbols: [
 		"&", "@", ["<", "&lt;"], [">", "&gt;"], "[", "]", "{", "}", "\\", 
 		"α", "β", "π", "µ", "Ω", "∑", "°", "∞", "≠", "±", "×", "÷", "≥",
@@ -7,14 +7,14 @@ $.texyla.setDefaults({
 	]
 });
 
-$.texyla.addWindow("symbol", {
+jQuery.texyla.addWindow("symbol", {
 	dimensions: [300, 230],
 
 	createContent: function () {
 		var _this = this;
 		
-		var el = $('<div></div>');
-		var symbolsEl = $('<div class="symbols"></div>').appendTo(el);
+		var el = jQuery('<div></div>');
+		var symbolsEl = jQuery('<div class="symbols"></div>').appendTo(el);
 
 		var symbols = this.options.symbols;
 
@@ -30,11 +30,11 @@ $.texyla.addWindow("symbol", {
 				}
 			};
 
-			$("<span class='ui-state-default'></span>")
+			jQuery("<span class='ui-state-default'></span>")
 				.hover(function () {
-					$(this).addClass("ui-state-hover");
+					jQuery(this).addClass("ui-state-hover");
 				}, function () {
-					$(this).removeClass("ui-state-hover");
+					jQuery(this).removeClass("ui-state-hover");
 				})
 				.text(symbols[i] instanceof Array ? symbols[i][0] : symbols[i])
 				.click(clk(symbols[i] instanceof Array ? symbols[i][1] : symbols[i]))

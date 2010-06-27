@@ -1,7 +1,7 @@
 // Okno obrázku
-$.texyla.addWindow("img", {
+jQuery.texyla.addWindow("img", {
 	createContent: function () {
-		return $(
+		return jQuery(
 			'<div><table><tbody><tr>' +
 				// Adresa
 				'<th><label>' + this.lng.imgSrc + '</label></th>' +

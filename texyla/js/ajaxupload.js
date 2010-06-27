@@ -37,7 +37,7 @@ jQuery.fn.extend({
 			} else {
 				body = iframeEl.contentWindow.document.body;
 			}
-			var content = $(body).text();
+			var content = jQuery(body).text();
 			
 			if (!content) {
 				callback();

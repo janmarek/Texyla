@@ -4,7 +4,7 @@
  * @author Petr Vaněk aka krteczek
  */
 
-$.texyla.setDefaults({
+jQuery.texyla.setDefaults({
 	colors: [
 	'red', 'blue', 'aqua', 'black', 'fuchsia', 'gray', 'green', 'lime',
 	'maroon', 'navy', 'olive', 'orange', 'purple', 'silver', 'teal',
@@ -12,11 +12,11 @@ $.texyla.setDefaults({
 	]
 });
 
-$.texyla.addWindow("color", {
+jQuery.texyla.addWindow("color", {
 	createContent: function () {
 		var _this = this;
-		var colors = $('<div></div>');
-		var colorsEl = $('<div class="colors"></div>').appendTo(colors);
+		var colors = jQuery('<div></div>');
+		var colorsEl = jQuery('<div class="colors"></div>').appendTo(colors);
 
 		// vloží kód pro obarvení elementu
 		function colorClk(color) {
@@ -40,14 +40,14 @@ $.texyla.addWindow("color", {
 		// vytvoření jednotlivých barevných tlačítek
 		for (var i = 0; i < _this.options.colors.length; i++) {
 			var color = _this.options.colors[i];
-			$(
+			jQuery(
 				'<span class="ui-state-default ui-corner-all" title="' + color + '">' +
 				'<span style="background-color:' + color + '">&nbsp;</span>' +
 				'</span>'
 			).hover(function () {
-				$(this).addClass("ui-state-hover");
+				jQuery(this).addClass("ui-state-hover");
 			}, function() {
-				$(this).removeClass("ui-state-hover");
+				jQuery(this).removeClass("ui-state-hover");
 			}).click(colorClk(color)).appendTo(colorsEl);
 		}
 

@@ -1,20 +1,20 @@
 // nahrávání obrázků
 
 // nastavení cesty
-$.texyla.setDefaults({
+jQuery.texyla.setDefaults({
 	filesPath: null,
 	filesThumbPath: null,
 	filesIconPath: "%texyla_base%/plugins/files/icons/%var%.png",
 	filesUploadPath: null
 });
 
-$.texyla.initPlugin(function () {
+jQuery.texyla.initPlugin(function () {
 	this.options.filesPath = this.expand(this.options.filesPath);
 	this.options.filesUploadPath = this.expand(this.options.filesUploadPath);
 });
 
 // okno
-$.texyla.addWindow("files", {
+jQuery.texyla.addWindow("files", {
 	// rozměry
 	dimensions: [400, 350],
 
@@ -22,16 +22,16 @@ $.texyla.addWindow("files", {
 	createContent: function () {
 		var _this = this;
 
-		var upload = $(
+		var upload = jQuery(
 			'<form action="' + this.options.filesUploadPath + '" class="upload" method="post" enctype="multipart/form-data"><div>' +
 				'<input type="hidden" name="folder" class="folder" value="">' +
 				'<input type="file" name="file" class="file"> ' +
 				'<input type="button" value="Nahrát" class="btn ui-state-default ui-corner-all">' +
 			'</div></form>'
 		);
-		var gallery = $('<div class="gallery"></div>');
+		var gallery = jQuery('<div class="gallery"></div>');
 
-		var el = $('<div />').append(upload).append(gallery);
+		var el = jQuery('<div />').append(upload).append(gallery);
 
 		// kliknutí na obrázek
 		function createInsertImageFunc(img) {
@@ -62,9 +62,9 @@ $.texyla.addWindow("files", {
 
 		// nahrávání souboru
 		upload.find(".btn").hover(function () {
-			$(this).addClass("ui-state-hover");
+			jQuery(this).addClass("ui-state-hover");
 		}, function () {
-			$(this).removeClass("ui-state-hover");
+			jQuery(this).removeClass("ui-state-hover");
 		}).click(function () {
 			if (!upload.find(".file").val()) return;
 
@@ -95,7 +95,7 @@ $.texyla.addWindow("files", {
 			gallery.empty().append('<p class="wait">' + _this.lng.wait + '</p>');
 			upload.hide().find(".folder").val(currentDir);
 
-			$.ajax({
+			jQuery.ajax({
 				type: "GET",
 				dataType: "json",
 				cache: false,
@@ -113,17 +113,13 @@ $.texyla.addWindow("files", {
 					var list = data.list;
 
 					for (var i = 0; i < list.length; i++) {
-						var item = $(
-							'<div class="gallery-item ui-state-default ui-corner-all">' +
+						var item = jQuery(
+							'<div class="gallery-item ui-widget-content ui-corner-all">' +
 								'<table><tr>' +
 									'<td class="image"></td><td class="label"></td>' +
 								'</tr></table>' +
 							'</div>'
-						).hover(function () {
-								$(this).addClass("ui-state-hover");
-						}, function () {
-								$(this).removeClass("ui-state-hover");
-						}).appendTo(gallery);
+						).appendTo(gallery);
 
 
 						switch (list[i].type) {

@@ -1,10 +1,10 @@
-$.texyla.setDefaults({
+jQuery.texyla.setDefaults({
 	youtubeMakro: "[* youtube:%var% *]"
 });
 
-$.texyla.addWindow("youtube", {
+jQuery.texyla.addWindow("youtube", {
 	createContent: function () {
-		var el = $(
+		var el = jQuery(
 			"<div><form><div>" +
 			'<label>' + this.lng.youtubeUrl + '<br>' +
 			'<input type="text" size="35" class="key">' +
@@ -25,7 +25,7 @@ $.texyla.addWindow("youtube", {
 				key = val;
 			}
 
-			$(this).data("key", key);
+			jQuery(this).data("key", key);
 
 			el.find(".thumb").html(
 				'<img src="http://img.youtube.com/vi/' + key + '/1.jpg" width="120" height="90">'
@@ -43,5 +43,5 @@ $.texyla.addWindow("youtube", {
 	dimensions: [320, 300]
 });
 
-$.texyla.addStrings("cs", {
+jQuery.texyla.addStrings("cs", {
 });
