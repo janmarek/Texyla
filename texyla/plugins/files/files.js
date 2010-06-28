@@ -9,7 +9,14 @@ jQuery.texyla.setDefaults({
 	filesUploadPath: null,
 	filesMkDirPath: null,
 	filesRenamePath: null,
-	filesDeletePath: null
+	filesDeletePath: null,
+	filesAllowUpload: true,
+	filesAllowMkDir: false,
+	filesAllowDelete: true,
+	filesAllowDeleteDir: false,
+	filesAllowRename: true,
+	filesAllowRenameDir: false,
+	filesAllowFilter: true
 });
 
 jQuery.texyla.initPlugin(function () {
@@ -29,15 +36,9 @@ jQuery.texyla.addWindow("files", {
 		var _this = this;
 		var currentDir = "";
 
-		// template
-
 		var el = jQuery(
 			'<div>' +
-				'<div class="toolbar">' +
-					'<a href="" class="upload">' + this.lng.filesUpload + '</a> ' +
-					'<a href="" class="mkdir">' + this.lng.filesMkDir + '</a>' +
-				'</div>' +
-				'<div class="files-filter">' + this.lng.filesFilter + ': <input type="text" class="ui-widget-content"></div>' +
+				'<div class="toolbar"></div>' +
 				'<div class="files-gallery"></div>' +
 				'<p class="wait">' + this.lng.wait + '</p>' +
 			'</div>'
@@ -48,70 +49,78 @@ jQuery.texyla.addWindow("files", {
 		 * upload button
 		 */
 
-		el.find("div.toolbar a.upload").button({
-			icons: {
-				primary: "ui-icon-arrowthick-1-n"
-			}
-		}).click(function () {
-			var win = _this.openWindow("upload");
-			win.find("form input.folder").val(currentDir);
-			el.dialog("close");
-			return false;
-		});
+		if (this.options.filesAllowUpload) {
+			jQuery('<a href="" class="upload">' + this.lng.filesUpload + '</a>').button({
+				icons: {
+					primary: "ui-icon-arrowthick-1-n"
+				}
+			}).click(function () {
+				var win = _this.openWindow("upload");
+				win.find("form input.folder").val(currentDir);
+				el.dialog("close");
+				return false;
+			}).appendTo(el.find("div.toolbar"));
+		}
 
 
 		/**
 		 * mkdir button
-		 * @todo
 		 */
 
-		el.find("div.toolbar a.mkdir").button({
-			icons: {
-				primary: "ui-icon-folder-collapsed"
-			}
-		}).click(function () {
-			var name = prompt(_this.lng.filesDirectoryName, "");
-			if (!name) return false;
-
-			jQuery.getJSON(_this.options.filesMkDirPath, {
-				folder: currentDir,
-				name: name
-			}, function (data) {
-				if (data.error) {
-					_this.error(data.error);
-					return;
+		if (this.options.filesAllowMkDir) {
+			jQuery('<a href="" class="mkdir">' + this.lng.filesMkDir + '</a>').button({
+				icons: {
+					primary: "ui-icon-folder-collapsed"
 				}
+			}).click(function () {
+				var name = prompt(_this.lng.filesDirectoryName, "");
+				if (!name) return false;
 
-				loadList(currentDir);
-			});
-			
-			return false;
-		});
+				jQuery.getJSON(_this.options.filesMkDirPath, {
+					folder: currentDir,
+					name: name
+				}, function (data) {
+					if (data.error) {
+						_this.error(data.error);
+						return;
+					}
+
+					loadList(currentDir);
+				});
+
+				return false;
+			}).appendTo(el.find("div.toolbar"));
+		}
 		
 
 		/**
 		 * files quick filter
 		 */
-		
-		var gallery = el.find("div.files-gallery");
 
-		el.find("div.files-filter input").keyup(function () {
-			var val = this.value;
-			gallery.find(".gallery-item").each(function () {
-				var item = $(this);
+		if (this.options.filesAllowFilter) {
+			jQuery('<div class="files-filter">' + this.lng.filesFilter + ': <input type="text" class="ui-widget-content"></div>')
+				.insertAfter(el.find(".toolbar"));
 
-				if (val === "") {
-					item.show();
-					return;
-				}
+			var gallery = el.find("div.files-gallery");
 
-				if (item.find("span.name").text().indexOf(val) !== -1) {
-					item.show();
-				} else {
-					item.hide();
-				}
+			el.find("div.files-filter input").keyup(function () {
+				var val = this.value;
+				gallery.find(".gallery-item").each(function () {
+					var item = $(this);
+
+					if (val === "") {
+						item.show();
+						return;
+					}
+
+					if (item.find("span.name").text().indexOf(val) !== -1) {
+						item.show();
+					} else {
+						item.hide();
+					}
+				});
 			});
-		});
+		}
 		
 
 		function loadList(dir) {
@@ -164,7 +173,7 @@ jQuery.texyla.addWindow("files", {
 						// events
 						var fnc;
 
-						switch (list[i].type) {
+						switch (type) {
 							case "up":
 							case "folder":
 								fnc = function (dir) {
@@ -205,58 +214,62 @@ jQuery.texyla.addWindow("files", {
 						if (type !== "up") {
 							var buttons = jQuery('<td class="buttons"></td>').appendTo(item.find("tr"));
 
-							jQuery('<a href="" class="rename">rename</a>').button({
-								icons: {
-									primary: "ui-icon-pencil"
-								},
-								text: false
-							}).click(function (file) {
-								return function () {
-									var newname = prompt(_this.lng.filesRename, file.name);
+							if ((_this.options.filesAllowRename && (type === "file" || type == "image")) || (_this.options.filesAllowRenameDir && type === "folder")) {
+								jQuery('<a href="" class="rename">' + _this.lng.filesRename + '</a>').button({
+									icons: {
+										primary: "ui-icon-pencil"
+									},
+									text: false
+								}).click(function (file) {
+									return function () {
+										var newname = prompt(_this.lng.filesRename, file.name);
 
-									if (!newname) return false;
+										if (!newname) return false;
 
-									jQuery.getJSON(_this.options.filesRenamePath, {
-										folder: currentDir,
-										oldname: file.name,
-										newname: newname
-									}, function (data) {
-										if (data.error) {
-											_this.error(data.error);
-											return;
-										}
+										jQuery.getJSON(_this.options.filesRenamePath, {
+											folder: currentDir,
+											oldname: file.name,
+											newname: newname
+										}, function (data) {
+											if (data.error) {
+												_this.error(data.error);
+												return;
+											}
 
-										loadList(currentDir);
-									});
+											loadList(currentDir);
+										});
 
-									return false;
-								}
-							}(list[i])).appendTo(buttons);
+										return false;
+									}
+								}(list[i])).appendTo(buttons);
+							}
 
-							jQuery('<a href="" class="delete">delete</a>').button({
-								icons: {
-									primary: "ui-icon-closethick"
-								},
-								text: false
-							}).click(function (file) {
-								return function () {
-									if (!confirm(_this.lng.filesReallyDelete + " '" + file.name + "'?")) return false;
+							if ((_this.options.filesAllowDelete && (type === "file" || type == "image")) || (_this.options.filesAllowDeleteDir && type === "folder")) {
+								jQuery('<a href="" class="delete">' + _this.lng.filesDelete + '</a>').button({
+									icons: {
+										primary: "ui-icon-closethick"
+									},
+									text: false
+								}).click(function (file) {
+									return function () {
+										if (!confirm(_this.lng.filesReallyDelete + " '" + file.name + "'?")) return false;
 
-									jQuery.getJSON(_this.options.filesDeletePath, {
-										folder: currentDir,
-										name: file.name
-									}, function (data) {
-										if (data.error) {
-											_this.error(data.error);
-											return;
-										}
+										jQuery.getJSON(_this.options.filesDeletePath, {
+											folder: currentDir,
+											name: file.name
+										}, function (data) {
+											if (data.error) {
+												_this.error(data.error);
+												return;
+											}
 
-										loadList(currentDir);
-									});
+											loadList(currentDir);
+										});
 
-									return false;
-								}
-							}(list[i])).appendTo(buttons);
+										return false;
+									}
+								}(list[i])).appendTo(buttons);
+							}
 
 
 						}
