@@ -80,7 +80,7 @@ class MyTexy extends Texy
 		}
 
 		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@youtube.phtml");
-		$template->id = $parts[0];
+		$template->id = $parts[1];
 		if ($image->width) $template->width = $image->width;
 		if ($image->height) $template->height = $image->height;
 

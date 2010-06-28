@@ -87,7 +87,14 @@ jQuery.texyla.addStrings("cs", {
 	// files
 	btn_files: "Soubory",
 	win_files: "Soubory",
-	filesUpload: "Nahrát",
+	filesUpload: "Nahrát soubor",
+	win_upload: "Nahrát soubor",
+	filesFilter: "Filtr",
+	filesMkDir: "Vytvo\u0159it adresá\u0159",
+	filesRename: "P\u0159ejmenovat",
+	filesDelete: "Smazat",
+	filesReallyDelete: "Opravdu smazat",
+	filesDirectoryName: "Název slo\u017eky",
 
 	// img
 	btn_img: "Obrázek",

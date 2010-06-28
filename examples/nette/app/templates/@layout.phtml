@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" type="text/css">
 
 	<!-- JUSH -->
-	<script src="https://jush.svn.sourceforge.net/svnroot/jush/trunk/jush.js"></script>
+	<script src="https://jush.svn.sourceforge.net/svnroot/jush/trunk/jush.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="https://jush.svn.sourceforge.net/svnroot/jush/trunk/jush.css">
 
 	<!-- Texyla core -->
@@ -59,8 +59,10 @@
 			baseDir: {$baseUri} + '../../../texyla',
 			previewPath: {plink Texyla:preview},
 			filesPath: {plink Texyla:listFiles},
-			filesThumbPath: '%var%',
-			filesUploadPath: {plink Texyla:upload}
+			filesUploadPath: {plink Texyla:upload},
+			filesMkDirPath: {plink Texyla:mkDir},
+			filesRenamePath: {plink Texyla:rename},
+			filesDeletePath: {plink Texyla:delete}
 		});
 
 		$(function () {

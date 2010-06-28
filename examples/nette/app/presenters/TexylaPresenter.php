@@ -168,7 +168,7 @@ class TexylaPresenter extends BasePresenter
 					$files[] = array(
 						"type" => "file",
 						"name" => $fileName,
-						"insertUrl" => $key,
+						"insertUrl" => $this->baseFolderUri . ($folder ? "$folder/" : "") . $fileName,
 						"description" => $fileName,
 					);
 				}
@@ -242,13 +242,96 @@ class TexylaPresenter extends BasePresenter
 				$this->payload->filename = ($folder ? "$folder/" : "") . $fileName;
 				$this->payload->type = "image";
 			} else {
-				$this->payload->filename = $this->baseFolderUri . "/" . ($folder ? "$folder/" : "") . $fileName;
+				$this->payload->filename = $this->baseFolderUri . ($folder ? "$folder/" : "") . $fileName;
 				$this->payload->type = "file";
 			}
 
 			$this->terminate(new JsonResponse($this->payload, "text/plain"));
 		} else {
 			$this->sendError("Move failed.");
+		}
+	}
+
+
+
+	/**
+	 * Make directory
+	 * @param string folder
+	 * @param string new folder name
+	 */
+	public function actionMkDir($folder, $name)
+	{
+		$name = String::webalize($name);
+		$path = $this->getFolderPath($folder) . "/" . $name;
+
+		if (mkdir($path)) {
+			$this->terminate(new JsonResponse(array(
+				"name" => $name,
+			)));
+		} else {
+			$this->sendError("Unable to create directory $path");
+		}
+	}
+
+
+
+	/**
+	 * Delete file or directory
+	 * @param string folder
+	 * @param string item name
+	 */
+	public function actionDelete($folder, $name)
+	{
+		$path = $this->getFolderPath($folder) . "/" . $name;
+
+		if (!file_exists($path)) {
+			$this->sendError("File does not exist.");
+		}
+
+		if (is_dir($path)) {
+			if (rmdir($path)) {
+				$this->terminate(new JsonResponse(array(
+					"deleted" => true,
+				)));
+			} else {
+				$this->sendError("Unable to delete directory.");
+			}
+		}
+
+		if (is_file($path)) {
+			if (unlink($path)) {
+				$this->terminate(new JsonResponse(array(
+					"deleted" => true,
+				)));
+			} else {
+				$this->sendError("Unable to delete file.");
+			}
+		}
+	}
+
+
+
+	/**
+	 * Rename file or directory
+	 * @param string folder
+	 * @param string old item name
+	 * @param string new item name
+	 */
+	public function actionRename($folder, $oldname, $newname)
+	{
+		$oldpath = $this->getFolderPath($folder) . "/" . $oldname;
+		$newpath = $this->getFolderPath($folder) . "/" . String::webalize($newname, ".");
+
+		if (!file_exists($oldpath)) {
+			$this->sendError("File does not exist.");
+		}
+
+		if (rename($oldpath, $newpath)) {
+			$this->terminate(new JsonResponse(array(
+				"deleted" => true,
+			)));
+		} else {
+			$this->sendError("Unable to rename file.");
 		}
 	}
 

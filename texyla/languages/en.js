@@ -88,6 +88,13 @@ jQuery.texyla.addStrings("en", {
 	btn_files: "Files",
 	win_files: "Files",
 	filesUpload: "Upload",
+	win_upload: "File upload",
+	filesFilter: "Filter",
+	filesMkDir: "Create directory",
+	filesRename: "Rename",
+	filesDelete: "Delete",
+	filesReallyDelete: "Really delete",
+	filesDirectoryName: "Directory name",
 
 	// img
 	btn_img: "Image",

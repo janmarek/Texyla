@@ -54,10 +54,13 @@ div.texyla .bottom-toolbar .tabs .btn.ui-state-active {line-height:30px; cursor:
 
 .ui-dialog-content p.wait {background:url("../img/loader.gif") 0 50% no-repeat; padding-left:26px; margin:0;}
 
-.ui-dialog-content div.gallery .image {width:60px; text-align:center; vertical-align:middle; line-height:0;}
-.ui-dialog-content div.gallery .label {display:table-cell; padding-left:5px;}
-.ui-dialog-content div.gallery {padding:0.5em 0;}
-.ui-dialog-content div.gallery-item {cursor:pointer; margin-top:5px;}
-.ui-dialog-content .upload .btn {cursor:pointer;}
+.ui-dialog-content .files-gallery .image {width:60px; text-align:center; vertical-align:middle; line-height:0;}
+.ui-dialog-content .files-gallery .image img {cursor:pointer;}
+.ui-dialog-content .files-gallery .label {display:table-cell; padding-left:5px;}
+.ui-dialog-content .files-gallery {padding:0;}
+.ui-dialog-content .gallery-item {margin-top:5px; font-size: 90%; width:100%}
+.ui-dialog-content .gallery-item td.buttons {font-size: 80%; text-align: right; visibility: hidden;}
+.ui-dialog-content .gallery-item:hover td.buttons {visibility: visible;}
+.ui-dialog-content div.files-filter {padding-top: 15px;}
 
 .ui-dialog-content div.clear {font-size:0; height:0; clear:both;}

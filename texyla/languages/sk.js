@@ -89,6 +89,13 @@ jQuery.texyla.addStrings("sk", {
 	btn_files: "Súbory",
 	win_files: "Súbory",
 	filesUpload: "Nahra\u0165",
+	win_upload: "Nahrát soubor",
+	filesFilter: "Filtr",
+	filesMkDir: "Vytvo\u0159it adresá\u0159",
+	filesRename: "P\u0159ejmenovat",
+	filesDelete: "Smazat",
+	filesReallyDelete: "Opravdu smazat",
+	filesDirectoryName: "Název slo\u017eky",
 
 	// img
 	btn_img: "Obrázok",
