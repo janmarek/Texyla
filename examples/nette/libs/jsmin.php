@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0055)http://github.com/rgrove/jsmin-php/raw/master/jsmin.php -->
-<HTML><BODY><PRE style="word-wrap: break-word; white-space: pre-wrap;">&lt;?php
+<?php
 /**
  * jsmin.php - PHP implementation of Douglas Crockford's JSMin.
  *
@@ -39,9 +37,9 @@
  * --
  *
  * @package JSMin
- * @author Ryan Grove &lt;ryan@wonko.com&gt;
- * @copyright 2002 Douglas Crockford &lt;douglas@crockford.com&gt; (jsmin.c)
- * @copyright 2008 Ryan Grove &lt;ryan@wonko.com&gt; (PHP port)
+ * @author Ryan Grove <ryan@wonko.com>
+ * @copyright 2002 Douglas Crockford <douglas@crockford.com> (jsmin.c)
+ * @copyright 2008 Ryan Grove <ryan@wonko.com> (PHP port)
  * @license http://opensource.org/licenses/mit-license.php MIT License
  * @version 1.1.1 (2008-03-02)
  * @link http://code.google.com/p/jsmin-php/
@@ -63,14 +61,14 @@ class JSMin {
 
   public static function minify($js) {
     $jsmin = new JSMin($js);
-    return $jsmin-&gt;min();
+    return $jsmin->min();
   }
 
   // -- Public Instance Methods ------------------------------------------------
 
   public function __construct($input) {
-    $this-&gt;input       = str_replace("\r\n", "\n", $input);
-    $this-&gt;inputLength = strlen($this-&gt;input);
+    $this->input       = str_replace("\r\n", "\n", $input);
+    $this->inputLength = strlen($this->input);
   }
 
   // -- Protected Instance Methods ---------------------------------------------
@@ -78,70 +76,70 @@ class JSMin {
   protected function action($d) {
     switch($d) {
       case 1:
-        $this-&gt;output .= $this-&gt;a;
+        $this->output .= $this->a;
 
       case 2:
-        $this-&gt;a = $this-&gt;b;
+        $this->a = $this->b;
 
-        if ($this-&gt;a === "'" || $this-&gt;a === '"') {
+        if ($this->a === "'" || $this->a === '"') {
           for (;;) {
-            $this-&gt;output .= $this-&gt;a;
-            $this-&gt;a       = $this-&gt;get();
+            $this->output .= $this->a;
+            $this->a       = $this->get();
 
-            if ($this-&gt;a === $this-&gt;b) {
+            if ($this->a === $this->b) {
               break;
             }
 
-            if (ord($this-&gt;a) &lt;= self::ORD_LF) {
+            if (ord($this->a) <= self::ORD_LF) {
               throw new JSMinException('Unterminated string literal.');
             }
 
-            if ($this-&gt;a === '\\') {
-              $this-&gt;output .= $this-&gt;a;
-              $this-&gt;a       = $this-&gt;get();
+            if ($this->a === '\\') {
+              $this->output .= $this->a;
+              $this->a       = $this->get();
             }
           }
         }
 
       case 3:
-        $this-&gt;b = $this-&gt;next();
+        $this->b = $this->next();
 
-        if ($this-&gt;b === '/' &amp;&amp; (
-            $this-&gt;a === '(' || $this-&gt;a === ',' || $this-&gt;a === '=' ||
-            $this-&gt;a === ':' || $this-&gt;a === '[' || $this-&gt;a === '!' ||
-            $this-&gt;a === '&amp;' || $this-&gt;a === '|' || $this-&gt;a === '?')) {
+        if ($this->b === '/' && (
+            $this->a === '(' || $this->a === ',' || $this->a === '=' ||
+            $this->a === ':' || $this->a === '[' || $this->a === '!' ||
+            $this->a === '&' || $this->a === '|' || $this->a === '?')) {
 
-          $this-&gt;output .= $this-&gt;a . $this-&gt;b;
+          $this->output .= $this->a . $this->b;
 
           for (;;) {
-            $this-&gt;a = $this-&gt;get();
+            $this->a = $this->get();
 
-            if ($this-&gt;a === '/') {
+            if ($this->a === '/') {
               break;
-            } elseif ($this-&gt;a === '\\') {
-              $this-&gt;output .= $this-&gt;a;
-              $this-&gt;a       = $this-&gt;get();
-            } elseif (ord($this-&gt;a) &lt;= self::ORD_LF) {
+            } elseif ($this->a === '\\') {
+              $this->output .= $this->a;
+              $this->a       = $this->get();
+            } elseif (ord($this->a) <= self::ORD_LF) {
               throw new JSMinException('Unterminated regular expression '.
                   'literal.');
             }
 
-            $this-&gt;output .= $this-&gt;a;
+            $this->output .= $this->a;
           }
 
-          $this-&gt;b = $this-&gt;next();
+          $this->b = $this->next();
         }
     }
   }
 
   protected function get() {
-    $c = $this-&gt;lookAhead;
-    $this-&gt;lookAhead = null;
+    $c = $this->lookAhead;
+    $this->lookAhead = null;
 
     if ($c === null) {
-      if ($this-&gt;inputIndex &lt; $this-&gt;inputLength) {
-        $c = substr($this-&gt;input, $this-&gt;inputIndex, 1);
-        $this-&gt;inputIndex += 1;
+      if ($this->inputIndex < $this->inputLength) {
+        $c = substr($this->input, $this->inputIndex, 1);
+        $this->inputIndex += 1;
       } else {
         $c = null;
       }
@@ -151,7 +149,7 @@ class JSMin {
       return "\n";
     }
 
-    if ($c === null || $c === "\n" || ord($c) &gt;= self::ORD_SPACE) {
+    if ($c === null || $c === "\n" || ord($c) >= self::ORD_SPACE) {
       return $c;
     }
 
@@ -159,60 +157,60 @@ class JSMin {
   }
 
   protected function isAlphaNum($c) {
-    return ord($c) &gt; 126 || $c === '\\' || preg_match('/^[\w\$]$/', $c) === 1;
+    return ord($c) > 126 || $c === '\\' || preg_match('/^[\w\$]$/', $c) === 1;
   }
 
   protected function min() {
-    $this-&gt;a = "\n";
-    $this-&gt;action(3);
+    $this->a = "\n";
+    $this->action(3);
 
-    while ($this-&gt;a !== null) {
-      switch ($this-&gt;a) {
+    while ($this->a !== null) {
+      switch ($this->a) {
         case ' ':
-          if ($this-&gt;isAlphaNum($this-&gt;b)) {
-            $this-&gt;action(1);
+          if ($this->isAlphaNum($this->b)) {
+            $this->action(1);
           } else {
-            $this-&gt;action(2);
+            $this->action(2);
           }
           break;
 
         case "\n":
-          switch ($this-&gt;b) {
+          switch ($this->b) {
             case '{':
             case '[':
             case '(':
             case '+':
             case '-':
-              $this-&gt;action(1);
+              $this->action(1);
               break;
 
             case ' ':
-              $this-&gt;action(3);
+              $this->action(3);
               break;
 
             default:
-              if ($this-&gt;isAlphaNum($this-&gt;b)) {
-                $this-&gt;action(1);
+              if ($this->isAlphaNum($this->b)) {
+                $this->action(1);
               }
               else {
-                $this-&gt;action(2);
+                $this->action(2);
               }
           }
           break;
 
         default:
-          switch ($this-&gt;b) {
+          switch ($this->b) {
             case ' ':
-              if ($this-&gt;isAlphaNum($this-&gt;a)) {
-                $this-&gt;action(1);
+              if ($this->isAlphaNum($this->a)) {
+                $this->action(1);
                 break;
               }
 
-              $this-&gt;action(3);
+              $this->action(3);
               break;
 
             case "\n":
-              switch ($this-&gt;a) {
+              switch ($this->a) {
                 case '}':
                 case ']':
                 case ')':
@@ -220,51 +218,51 @@ class JSMin {
                 case '-':
                 case '"':
                 case "'":
-                  $this-&gt;action(1);
+                  $this->action(1);
                   break;
 
                 default:
-                  if ($this-&gt;isAlphaNum($this-&gt;a)) {
-                    $this-&gt;action(1);
+                  if ($this->isAlphaNum($this->a)) {
+                    $this->action(1);
                   }
                   else {
-                    $this-&gt;action(3);
+                    $this->action(3);
                   }
               }
               break;
 
             default:
-              $this-&gt;action(1);
+              $this->action(1);
               break;
           }
       }
     }
 
-    return $this-&gt;output;
+    return $this->output;
   }
 
   protected function next() {
-    $c = $this-&gt;get();
+    $c = $this->get();
 
     if ($c === '/') {
-      switch($this-&gt;peek()) {
+      switch($this->peek()) {
         case '/':
           for (;;) {
-            $c = $this-&gt;get();
+            $c = $this->get();
 
-            if (ord($c) &lt;= self::ORD_LF) {
+            if (ord($c) <= self::ORD_LF) {
               return $c;
             }
           }
 
         case '*':
-          $this-&gt;get();
+          $this->get();
 
           for (;;) {
-            switch($this-&gt;get()) {
+            switch($this->get()) {
               case '*':
-                if ($this-&gt;peek() === '/') {
-                  $this-&gt;get();
+                if ($this->peek() === '/') {
+                  $this->get();
                   return ' ';
                 }
                 break;
@@ -283,11 +281,10 @@ class JSMin {
   }
 
   protected function peek() {
-    $this-&gt;lookAhead = $this-&gt;get();
-    return $this-&gt;lookAhead;
+    $this->lookAhead = $this->get();
+    return $this->lookAhead;
   }
 }
 
 // -- Exceptions ---------------------------------------------------------------
 class JSMinException extends Exception {}
-?&gt;</PRE></BODY></HTML>
