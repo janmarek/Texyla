@@ -21,11 +21,16 @@ jQuery.texyla.setDefaults({
 
 jQuery.texyla.initPlugin(function () {
 	this.options.filesPath = this.expand(this.options.filesPath);
-	this.options.filesThumbPath = this.expand(this.options.filesThumbPath);
-	this.options.filesUploadPath = this.expand(this.options.filesUploadPath);
-	this.options.filesMkDirPath = this.expand(this.options.filesMkDirPath);
-	this.options.filesRenamePath = this.expand(this.options.filesRenamePath);
-	this.options.filesDeletePath = this.expand(this.options.filesDeletePath);
+	if (this.options.filesThumbPath)
+		this.options.filesThumbPath = this.expand(this.options.filesThumbPath);
+	if (this.options.filesUploadPath)
+		this.options.filesUploadPath = this.expand(this.options.filesUploadPath);
+	if (this.options.filesMkDirPath)
+		this.options.filesMkDirPath = this.expand(this.options.filesMkDirPath);
+	if (this.options.filesRenamePath)
+		this.options.filesRenamePath = this.expand(this.options.filesRenamePath);
+	if (this.options.filesDeletePath)
+		this.options.filesDeletePath = this.expand(this.options.filesDeletePath);
 });
 
 jQuery.texyla.addWindow("files", {
