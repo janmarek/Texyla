@@ -90,7 +90,6 @@ Texyla.prototype.view = function(type, first) {
 			_this.htmlPreview.text(data.replace(new RegExp("\n", "g"), _this.texy.lf())).show();
 
 			// obarvit html pomocí JUSHe
-			// if (jush) { //BUG: Ve FF 3.5.7 Mac a nedostupnem jush ukonci zpracovavani skriptu (a neschova se "cekejte prosim")
 			if (typeof jush != 'undefined') {
 				_this.htmlPreview.html(jush.highlight("htm", data));
 			}
