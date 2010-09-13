@@ -44,6 +44,7 @@ class MyTexy extends Texy
 		$this->addHandler('image', array($this, 'youtubeHandler'));
 		$this->addHandler('image', array($this, 'streamHandler'));
 		$this->addHandler('image', array($this, 'flashHandler'));
+		$this->addHandler("phrase", array($this, "netteLink"));
 	}
 
 
@@ -57,6 +58,39 @@ class MyTexy extends Texy
 		$template = new Template;
 		$template->registerFilter(new LatteFilter);
 		return $template;
+	}
+	
+
+
+	/**
+	 * @param TexyHandlerInvocation  handler invocation
+	 * @param string
+	 * @param string
+	 * @param TexyModifier
+	 * @param TexyLink
+	 * @return TexyHtml|string|FALSE
+	 */
+	public function netteLink($invocation, $phrase, $content, $modifier, $link)
+	{
+		// is there link?
+		if (!$link) return $invocation->proceed();
+
+		$url = $link->URL;
+
+		if (String::startsWith($url, "plink://")) {
+			$url = substr($url, 8);
+			list($presenter, $params) = explode("?", $url, 2);
+
+			$arr = array();
+
+			if ($params) {
+				parse_str($params, $arr);
+			}
+
+			$link->URL = Environment::getApplication()->getPresenter()->link($presenter, $arr);
+		}
+
+		return $invocation->proceed();
 	}
 
 
