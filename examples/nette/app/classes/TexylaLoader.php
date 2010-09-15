@@ -30,6 +30,7 @@ class TexylaLoader extends WebLoader\JavaScriptLoader
 			"js/dom.js",
 			"js/view.js",
 			"js/ajaxupload.js",
+			"js/window.js",
 
 			// languages
 			"languages/cs.js",
@@ -38,7 +39,6 @@ class TexylaLoader extends WebLoader\JavaScriptLoader
 
 			// plugins
 			"plugins/keys/keys.js",
-			"plugins/window/window.js",
 			"plugins/resizableTextarea/resizableTextarea.js",
 			"plugins/img/img.js",
 			"plugins/table/table.js",
