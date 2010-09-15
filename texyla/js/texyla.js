@@ -125,8 +125,6 @@ Texyla.prototype.languages = {};
 
 // výchozí nastavení
 Texyla.prototype.defaultOptions = {
-	// CSS selektor textarey. Výchozí: všechny textarey
-	textarea: "textarea",
 	// šířka Texyly v pixelech
 	width: null,
 	// Odsazení textarey od krajů Texyly
