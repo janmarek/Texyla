@@ -55,7 +55,7 @@ class MyTexy extends Texy
 	 */
 	private function createTemplate()
 	{
-		$template = new Template;
+		$template = new FileTemplate;
 		$template->registerFilter(new LatteFilter);
 		return $template;
 	}
