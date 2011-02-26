@@ -47,7 +47,7 @@ class TexylaPresenter extends BasePresenter
 	{
 		$texy = Environment::getService("Texy");
 		$html = $texy->process(Environment::getHttpRequest()->getPost("texy"));
-		$this->terminate(new RenderResponse($html));
+		$this->sendResponse(new RenderResponse($html));
 	}
 
 
@@ -62,7 +62,7 @@ class TexylaPresenter extends BasePresenter
 	 */
 	private function sendError($msg)
 	{
-		$this->terminate(new JsonResponse(array(
+		$this->sendResponse(new JsonResponse(array(
 			"error" => $msg,
 		), "text/plain"));
 	}
@@ -176,7 +176,7 @@ class TexylaPresenter extends BasePresenter
 		}
 
 		// send response
-		$this->terminate(new JsonResponse(array(
+		$this->sendResponse(new JsonResponse(array(
 			"list" => array_merge($folders, $files),
 		)));
 	}
@@ -199,7 +199,7 @@ class TexylaPresenter extends BasePresenter
 			Image::fromString(Image::EMPTY_GIF)->send(Image::GIF);
 		}
 
-		$this->terminate();
+		$this->terminate()
 	}
 
 
@@ -246,7 +246,7 @@ class TexylaPresenter extends BasePresenter
 				$this->payload->type = "file";
 			}
 
-			$this->terminate(new JsonResponse($this->payload, "text/plain"));
+			$this->sendResponse(new JsonResponse($this->payload, "text/plain"));
 		} else {
 			$this->sendError("Move failed.");
 		}
@@ -265,7 +265,7 @@ class TexylaPresenter extends BasePresenter
 		$path = $this->getFolderPath($folder) . "/" . $name;
 
 		if (mkdir($path)) {
-			$this->terminate(new JsonResponse(array(
+			$this->sendResponse(new JsonResponse(array(
 				"name" => $name,
 			)));
 		} else {
@@ -290,7 +290,7 @@ class TexylaPresenter extends BasePresenter
 
 		if (is_dir($path)) {
 			if (rmdir($path)) {
-				$this->terminate(new JsonResponse(array(
+				$this->sendResponse(new JsonResponse(array(
 					"deleted" => true,
 				)));
 			} else {
@@ -300,7 +300,7 @@ class TexylaPresenter extends BasePresenter
 
 		if (is_file($path)) {
 			if (unlink($path)) {
-				$this->terminate(new JsonResponse(array(
+				$this->sendResponse(new JsonResponse(array(
 					"deleted" => true,
 				)));
 			} else {
@@ -327,7 +327,7 @@ class TexylaPresenter extends BasePresenter
 		}
 
 		if (rename($oldpath, $newpath)) {
-			$this->terminate(new JsonResponse(array(
+			$this->sendResponse(new JsonResponse(array(
 				"deleted" => true,
 			)));
 		} else {
