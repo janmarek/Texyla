@@ -31,10 +31,11 @@ class AdminTexy extends Texy
 		$this->imageModule->fileRoot = __DIR__ . "/images";
 		$this->imageModule->root = "images/";
 		
-		// přidávání youtube.com, stream.cz videa a flash
+		// přidávání youtube.com, stream.cz videa, flash a gravatar
 		$this->addHandler('image', array(__CLASS__, 'youtubeHandler'));
 		$this->addHandler('image', array(__CLASS__, 'streamHandler'));
 		$this->addHandler('image', array(__CLASS__, 'flashHandler'));
+		$this->addHandler('image', array(__CLASS__, 'gravatarHandler'));
 	}
 
 
@@ -147,6 +148,34 @@ class AdminTexy extends Texy
 
 		$texy = $invocation->getTexy();
 		return $texy->protect($code, Texy::CONTENT_BLOCK);
+	}
+
+
+	/**
+	 * User handler for images
+	 *
+	 * @param TexyHandlerInvocation  handler invocation
+	 * @param TexyImage
+	 * @param TexyLink
+	 * @return TexyHtml|string|FALSE
+	 */
+	public static function gravatarHandler($invocation, $image, $link)
+	{
+		$parts = explode(':', $image->URL);
+		if (count($parts) !== 2)
+			return $invocation->proceed();
+
+		switch ($parts[0]) {
+			case 'gravatar':
+				$email = htmlSpecialChars($parts[1]);
+				$dimensions = 'width="' . ($image->width ? $image->width : 32) . '" height="' . ($image->width ? $image->width : 32) . '"';
+				$code = '<div><img ' . $dimensions . ' src="http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=mm&s=32" alt="" /></div>';
+
+				$texy = $invocation->getTexy();
+				return $texy->protect($code, Texy::CONTENT_BLOCK);
+		}
+
+		return $invocation->proceed();
 	}
 
 }

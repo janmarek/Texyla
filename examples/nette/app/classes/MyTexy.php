@@ -40,11 +40,12 @@ class MyTexy extends Texy
 		$this->imageModule->fileRoot = WWW_DIR . "/files";
 		$this->imageModule->root = Environment::getVariable("baseUri") . "files/";
 
-		// flash, youtube.com, stream.cz handlers
+		// flash, youtube.com, stream.cz, gravatar handlers
 		$this->addHandler('image', array($this, 'youtubeHandler'));
 		$this->addHandler('image', array($this, 'streamHandler'));
 		$this->addHandler('image', array($this, 'flashHandler'));
 		$this->addHandler("phrase", array($this, "netteLink"));
+		$this->addHandler('image', array($this, 'gravatarHandler'));
 	}
 
 
@@ -173,6 +174,34 @@ class MyTexy extends Texy
 		if ($image->width) $template->width = $image->width;
 		if ($image->height) $template->height = $image->height;
 		
+		return $this->protect((string) $template, Texy::CONTENT_BLOCK);
+	}
+
+
+
+	/**
+	 * Gravatar handler for images
+	 * 
+	 * @example [* gravatar:JG7I5IF6 *]
+	 *
+	 * @param TexyHandlerInvocation  handler invocation
+	 * @param TexyImage
+	 * @param TexyLink
+	 * @return TexyHtml|string|FALSE
+	 */
+	public function gravatarHandler($invocation, $image, $link)
+	{
+		$parts = explode(':', $image->URL, 2);
+
+		if (count($parts) !== 2 || $parts[0] !== "gravatar") {
+			return $invocation->proceed();
+		}
+
+		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@gravatar.phtml");
+		$template->email = $parts[1];
+		if ($image->width) $template->width = $image->width;
+		if ($image->height) $template->height = $image->height;
+
 		return $this->protect((string) $template, Texy::CONTENT_BLOCK);
 	}
 	

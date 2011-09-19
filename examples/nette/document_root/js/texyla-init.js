@@ -23,7 +23,7 @@ $(function () {
 			null,
 			'color', 'textTransform',
 			null,
-			'files', 'youtube',
+			'files', 'youtube', 'gravatar',
 			null,
 			'div', ['html', 'blockquote', 'text', 'comment'],
 			null,
