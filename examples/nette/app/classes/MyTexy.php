@@ -182,7 +182,7 @@ class MyTexy extends Texy
 	/**
 	 * Gravatar handler for images
 	 * 
-	 * @example [* gravatar:JG7I5IF6 *]
+	 * @example [* gravatar:user@example.com *]
 	 *
 	 * @param TexyHandlerInvocation  handler invocation
 	 * @param TexyImage
