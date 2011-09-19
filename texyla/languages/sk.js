@@ -140,5 +140,11 @@ jQuery.texyla.addStrings("sk", {
 	btn_youtube: "YouTube",
 	win_youtube: "YouTube",
 	youtubeUrl: "Vlo\u017ete adresu videa alebo jeho ID",
-	youtubePreview: "Náh\u013ead videa"
+	youtubePreview: "Náh\u013ead videa",
+
+	// Gravatar
+	btn_gravatar: 'Gravatar',
+	win_gravatar: 'Gravatar',
+	gravatarUrl: "Vlo\u017ete email",
+	youtubePreview: "Náh\u013ead"
 });

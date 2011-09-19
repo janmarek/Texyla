@@ -49,6 +49,7 @@ class TexylaLoader extends WebLoader\JavaScriptLoader
 			"plugins/color/color.js",
 			"plugins/textTransform/textTransform.js",
 			"plugins/youtube/youtube.js",
+			"plugins/gravatar/gravatar.js",
 		));
 
 		$this->filters[] = "JSMin::minify";

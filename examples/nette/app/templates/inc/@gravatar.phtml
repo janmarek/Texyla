@@ -1,0 +1,3 @@
+{default size=>32, default=>'mm', rating=>NULL}
+
+<img src="http://www.gravatar.com/avatar/{=md5(strtolower(trim($email)))}?d={$default}&s={$size}{$rating!==NULL? '&r='.$this->rating : ''}" alt="" width="{$size}" height="{$size}" />
