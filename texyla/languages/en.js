@@ -139,5 +139,11 @@ jQuery.texyla.addStrings("en", {
 	btn_youtube: "YouTube",
 	win_youtube: "YouTube",
 	youtubeUrl: "Insert address or ID",
-	youtubePreview: "Preview"
+	youtubePreview: "Preview",
+
+	// gravatar
+	btn_gravatar: "Gravatar",
+	win_gravatar: "Gravatar",
+	gravatarUrl: "Insert email",
+	gravatarPreview: "Preview"
 });
