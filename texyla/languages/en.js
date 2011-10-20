@@ -107,6 +107,11 @@ jQuery.texyla.addStrings("en", {
 	imgAlignRight: "right",
 	imgAlignCenter: "center",
 	imgDescription: "Show as a description",
+	imgSize: "Image's size",
+	imgWidth: "Width",
+	imgHeight: "Height",
+	imgNotAsMax: "x",
+	imgAsMax: "maintain aspect",
 
 	// link
 	win_link: "Insert hyperlink",

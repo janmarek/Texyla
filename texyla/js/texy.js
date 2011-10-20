@@ -108,8 +108,8 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 
 	_toLetter: function(n) {
 		var alphabet = [
-			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-			"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+			'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
 		];
 		return alphabet[Math.max(0, Math.min(n, alphabet.length) - 1)];
 	},
@@ -149,7 +149,7 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 
 	// odsazení o mezeru
 	indent: function () {
-		this.list("indent");
+		this.list('indent');
 	},
 
 	// zrušit odsazení
@@ -160,7 +160,7 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 
 		for (var i = 0; i < lines.length; i++) {
 			var first = lines[i].substring(0, 1);
-			if (first == " " || first == "\t") {
+			if (first == ' ' || first == "\t") {
 				replacement.push(lines[i].substring(1, lines[i].length));
 			} else {
 				replacement.push(lines[i]);
@@ -199,7 +199,7 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 	},
 	
 	// obrázek
-	img: function(src, alt, align, descr) {		
+	img: function(src, alt, align, descr, width, asMax, height) {		
 		// Zarovnání na střed
 		var imgT = '';
 		
@@ -210,7 +210,28 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 		
 		// Začátek
 		imgT += '[* ' + src + ' ';
-		
+
+		if (width.length || height.length) {
+			if (/^([1-9]\d*|\?)$/.test(width)) {
+				imgT += width;
+			}
+			else {
+				imgT += '?';
+			}
+			if (/^(x|X)$/.test(asMax)) {
+				imgT += asMax;
+			}
+			else {
+				imgT += 'x';
+			}
+			if (/^([1-9]\d*|\?)$/.test(height)) {
+				imgT += height;
+			}
+			else {
+				imgT += '?';
+			}
+		}
+
 		// Popis
 		imgT += alt ? '.('+ alt +') ' : '';
 		
