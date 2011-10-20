@@ -4,7 +4,7 @@
  */
 jQuery.texyla.addStrings("sk", {
 	// popisy tlačítok
-	btn_h1: "Najvä\u010dší nadpis",
+	btn_h1: "Najvä\u010d\u0161í nadpis",
 	btn_h2: "Ve\u013eký nadpis",
 	btn_h3: "Stredný nadpis",
 	btn_h4: "Najmen\u0161í nadpis",
@@ -66,8 +66,8 @@ jQuery.texyla.addStrings("sk", {
 	// okna
 	windowOk: "OK",
 	windowClose: "Zavrie\u0165",
-	windowCancel: "Zru\u0161iť",
-	windowCloseAfterInsert: "Zavríe\u0165 po vložení",
+	windowCancel: "Zru\u0161i\u0165",
+	windowCloseAfterInsert: "Zavrie\u0165 po vlo\u017eení",
 
 	// adresy
 	syntaxUrl: 'http://texy.info/cs/syntax',
@@ -77,29 +77,29 @@ jQuery.texyla.addStrings("sk", {
 	// color
 	btn_color: "Farby",
 	win_color: "Vyberte farbu",
-	colorSelectModeHeading: "Obarvit:",
+	colorSelectModeHeading: "Ofarbi\u0165:",
 	colorSelectModeText: "text",
-	colorSelectModeBackground: 'pozadí',
+	colorSelectModeBackground: 'pozadie',
 
 	// emoticon
 	btn_emoticon: "Smajlík",
-	win_emoticon: "Vlo\u017eiť smajlíka",
+	win_emoticon: "Vlo\u017ei\u0165 smajlíka",
 
 	// files
 	btn_files: "Súbory",
 	win_files: "Súbory",
 	filesUpload: "Nahra\u0165",
-	win_upload: "Nahrát soubor",
-	filesFilter: "Filtr",
-	filesMkDir: "Vytvo\u0159it adresá\u0159",
-	filesRename: "P\u0159ejmenovat",
-	filesDelete: "Smazat",
-	filesReallyDelete: "Opravdu smazat",
-	filesDirectoryName: "Název slo\u017eky",
+	win_upload: "Nahra\u0165 súbor",
+	filesFilter: "Filter",
+	filesMkDir: "Vytvori\u0165 adresár",
+	filesRename: "Premenova\u0165",
+	filesDelete: "Zmaza\u0165",
+	filesReallyDelete: "Naozaj zmaza\u0165",
+	filesDirectoryName: "Názov zlo\u017eky",
 
 	// img
 	btn_img: "Obrázok",
-	win_img: "Vlo\u017eiť obrázok",
+	win_img: "Vlo\u017ei\u0165 obrázok",
 	imgSrc: "Adresa obrázka",
 	imgAlt: "Popis",
 	imgAlign: "Zarovnanie",
@@ -110,16 +110,16 @@ jQuery.texyla.addStrings("sk", {
 	imgDescription: "Zobrazi\u0165 ako popisok",
 
 	// link
-	win_link: "Vlo\u017eiť odkaz",
+	win_link: "Vlo\u017ei\u0165 odkaz",
 	linkText: "Text odkazu",
 
 	// symbol
 	btn_symbol: "Symbol",
-	win_symbol: "Vlo\u017eiť symbol",
+	win_symbol: "Vlo\u017ei\u0165 symbol",
 
 	// table
 	btn_table: "Tabu\u013eka",
-	win_table: "Vlo\u017eiť tabuľku",
+	win_table: "Vlo\u017ei\u0165 tabu\u013eku",
 	tableCols: "Po\u010det stĺpcov",
 	tableRows: "Po\u010det riadkov",
 	tableTh: "Hlavi\u010dka",
@@ -146,5 +146,5 @@ jQuery.texyla.addStrings("sk", {
 	btn_gravatar: 'Gravatar',
 	win_gravatar: 'Gravatar',
 	gravatarUrl: "Vlo\u017ete email",
-	youtubePreview: "Náh\u013ead"
+	gravatarPreview: "Náh\u013ead"
 });
