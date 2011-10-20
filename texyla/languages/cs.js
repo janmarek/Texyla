@@ -107,6 +107,11 @@ jQuery.texyla.addStrings("cs", {
 	imgAlignRight: "vpravo",
 	imgAlignCenter: "na st\u0159ed",
 	imgDescription: "Zobrazit jako popisek",
+	imgSize: "Velikost obrázku",
+	imgWidth: "\u0160ířka",
+	imgHeight: "Vý\u0161ka",
+	imgNotAsMax: "x",
+	imgAsMax: "dodr\u017e poměr",
 
 	// link
 	win_link: "Vlo\u017eit odkaz",

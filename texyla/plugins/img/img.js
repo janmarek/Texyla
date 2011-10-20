@@ -1,5 +1,5 @@
 // Okno obrázku
-jQuery.texyla.addWindow("img", {
+jQuery.texyla.addWindow('img', {
 	createContent: function () {
 		return jQuery(
 			'<div><table><tbody><tr>' +
@@ -23,18 +23,32 @@ jQuery.texyla.addWindow("img", {
 					'<option value=">">' + this.lng.imgAlignRight + '</option>' +
 					'<option value="<>">' + this.lng.imgAlignCenter + '</option>' +
 				'</select></td>' +
-			'</tr></tbody></table></div>'
+			'</tr><tr>' +
+				'<th><label>' + this.lng.imgSize + '</label></th>' +
+				'<td>' +
+					'<input type="text" class="width" size="4" placeholder="' + this.lng.imgWidth +'">' +
+					'<select class="asMax">' +
+						'<option value="x">' + this.lng.imgNotAsMax + '</option>' +
+						'<option value="X">' + this.lng.imgAsMax + '</option>' +
+					'</select>' +
+					'<input type="text" class="height" size="4" placeholder="' + this.lng.imgHeight +'">' +
+				'</td>' +
+			'</tr>' +
+			'</tbody></table></div>'
 		);
 	},
 
 	action: function (el) {
 		this.texy.img(
-			el.find(".src").val(),
-			el.find(".alt").val(),
-			el.find(".align").val(),
-			el.find(".descr").get(0).checked
+			el.find('.src').val(),
+			el.find('.alt').val(),
+			el.find('.align').val(),
+			el.find('.descr').get(0).checked,
+			el.find('.width').val(),
+			el.find('.asMax').val(),
+			el.find('.height').val()
 		);
 	},
 	
-	dimensions: [350, 250]
+	dimensions: [350, 'auto']
 });
