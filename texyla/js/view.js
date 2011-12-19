@@ -2,7 +2,7 @@
 Texyla.prototype.view = function(type, first) {
 	// textarea value
 	var taVal = this.textarea.val();
-	
+
 	// prázdná textarea
 	if (type != "edit" && taVal == "") {
 		// poprvé nebuzerovat a bez keců přepnout
@@ -10,13 +10,13 @@ Texyla.prototype.view = function(type, first) {
 			this.view("edit");
 			return;
 		}
-	
+
 		alert(this.lng.viewEmpty);
 		this.textarea.focus();
-		
+
 		return;
 	}
-	
+
 	// schovávání a odkrývání
 	switch (type) {
 		// náhled
@@ -27,7 +27,7 @@ Texyla.prototype.view = function(type, first) {
 			this.rightPreviewToolbar.show();
 			this.rightEditToolbar.hide();
 		break;
-		
+
 		// html náhled
 		case "htmlPreview":
 			this.previewDiv.hide();
@@ -36,7 +36,7 @@ Texyla.prototype.view = function(type, first) {
 			this.rightPreviewToolbar.show();
 			this.rightEditToolbar.hide();
 		break;
-		
+
 		// upravovat
 		case "edit":
 			this.previewDiv.hide();
@@ -46,7 +46,7 @@ Texyla.prototype.view = function(type, first) {
 			this.rightEditToolbar.show();
 		break;
 	}
-	
+
 	// výška náhledů
 	if (type != "edit") {
 		var height = this.textarea.get(0).offsetHeight || this.textareaHeight;
@@ -59,13 +59,13 @@ Texyla.prototype.view = function(type, first) {
 			this.container.find("div.preview-wrapper").height("auto");
 		}
 	}
-	
+
 	// zvýraznění aktivního tabu
 	if (this.options.tabs) {
 		var tabs = this.leftToolbar;
 		tabs.find(".ui-state-active").removeClass("ui-state-active");
 		tabs.find(".btn_" + type).addClass("ui-state-active");
-		
+
 	// schovávání tlačítka aktivního pohledu
 	} else {
 		var views = ["preview", "htmlPreview", "edit"];
@@ -79,13 +79,13 @@ Texyla.prototype.view = function(type, first) {
 	}
 
 	// načtení náhledu
-	if (type != "edit" && this.lastPreviewedTexy != taVal) {	
+	if (type != "edit" && this.lastPreviewedTexy != taVal) {
 		// při načtení náhledu
 		var _this = this;
 		function onLoad(data) {
 			// náhled
 			_this.preview.html(data).show();
-			
+
 			// náhled html
 			_this.htmlPreview.text(data.replace(new RegExp("\n", "g"), _this.texy.lf())).show();
 
@@ -93,28 +93,28 @@ Texyla.prototype.view = function(type, first) {
 			if (typeof jush != 'undefined') {
 				_this.htmlPreview.html(jush.highlight("htm", data));
 			}
-			
+
 			// schovat čekejte
 			_this.wait.hide();
 		};
-	
+
 		// kešuje poslední texy
 		this.lastPreviewedTexy = taVal;
-		
+
 		// zobrazí prosím čekejte
 		var parent = this[type == "preview" ? "preview" : "htmlPreview"].parent();
-		
+
 		parent.prepend(this.wait);
-		
+
 		this.wait.show().css({
 			marginTop: (parent.get(0).offsetHeight - this.wait.get(0).offsetHeight) / 2,
 			marginLeft: (parent.get(0).offsetWidth - this.wait.get(0).offsetWidth) / 2
 		});
-		
+
 		// a schová staré obsahy náhledů
 		this.preview.hide();
 		this.htmlPreview.hide();
-		
+
 		// volá ajax
 		jQuery.post(this.options.previewPath, {texy: taVal, cfg: this.options.texyCfg}, onLoad, "html");
 	}

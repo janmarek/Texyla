@@ -60,7 +60,7 @@ class MyTexy extends Texy
 		$template->registerFilter(new LatteFilter);
 		return $template;
 	}
-	
+
 
 
 	/**
@@ -98,7 +98,7 @@ class MyTexy extends Texy
 
 	/**
 	 * YouTube handler for images
-	 * 
+	 *
 	 * @example [* youtube:JG7I5IF6 *]
 	 *
 	 * @param TexyHandlerInvocation  handler invocation
@@ -173,7 +173,7 @@ class MyTexy extends Texy
 		$template->id = $parts[1];
 		if ($image->width) $template->width = $image->width;
 		if ($image->height) $template->height = $image->height;
-		
+
 		return $this->protect((string) $template, Texy::CONTENT_BLOCK);
 	}
 
@@ -181,7 +181,7 @@ class MyTexy extends Texy
 
 	/**
 	 * Gravatar handler for images
-	 * 
+	 *
 	 * @example [* gravatar:user@example.com *]
 	 *
 	 * @param TexyHandlerInvocation  handler invocation
@@ -204,5 +204,5 @@ class MyTexy extends Texy
 
 		return $this->protect((string) $template, Texy::CONTENT_BLOCK);
 	}
-	
+
 }

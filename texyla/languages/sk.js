@@ -26,7 +26,7 @@ jQuery.texyla.addStrings("sk", {
 	btn_olAlphabetBig: "Ve\u013eká abeceda",
 
 	btn_blockquote: "Bloková citácia",
-	
+
 	btn_sub: "Dolný index",
 	btn_sup: "Horný index",
 
@@ -51,7 +51,7 @@ jQuery.texyla.addStrings("sk", {
 	btn_htmlPreview: "HTML",
 	btn_syntax: "Texy nápoveda",
 	btn_submit: "Odosla\u0165",
-	
+
 	btn_web: "Web editora Texyla",
 
 	// funkcie

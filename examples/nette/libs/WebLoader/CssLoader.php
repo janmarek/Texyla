@@ -12,11 +12,11 @@ use Nette\IComponentContainer;
  * @license MIT
  */
 class CssLoader extends WebLoader {
-	
+
 	/** @var string */
 	private $media;
 
-	
+
 	/**
 	 * Construct
 	 * @param IComponentContainer parent
@@ -49,7 +49,7 @@ class CssLoader extends WebLoader {
 		return $this;
 	}
 
-	
+
 	/**
 	 * Get link element
 	 * @param string $source

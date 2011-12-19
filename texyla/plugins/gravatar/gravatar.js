@@ -50,7 +50,7 @@ if (typeof faultylabs == 'undefined') {
     faultylabs = {}
 }
 faultylabs.MD5 = function(data) {
-	function to_zerofilled_hex(n) {     
+	function to_zerofilled_hex(n) {
 		var t1 = (n >>> 0).toString(16)
 		return "00000000".substr(0, 8 - t1.length) + t1
 	}
@@ -160,14 +160,14 @@ faultylabs.MD5 = function(data) {
 			databytes = typed_to_plain(new Uint8Array(data))
 		} else if ((data instanceof Uint8Array) || (data instanceof Int8Array)) {
 			databytes = typed_to_plain(data)
-		} else if ((data instanceof Uint32Array) || (data instanceof Int32Array) || 
-			   (data instanceof Uint16Array) || (data instanceof Int16Array) || 
+		} else if ((data instanceof Uint32Array) || (data instanceof Int32Array) ||
+			   (data instanceof Uint16Array) || (data instanceof Int16Array) ||
 			   (data instanceof Float32Array) || (data instanceof Float64Array)
 		 ) {
 			databytes = typed_to_plain(new Uint8Array(data.buffer))
 		} else {
 			type_mismatch = typeof data
-		}   
+		}
 	} else {
 		type_mismatch = typeof data
 	}
@@ -189,9 +189,9 @@ faultylabs.MD5 = function(data) {
 			d = c
 			c = b
 			//b = b + rol(a + (nf + (sin32 + dw32)), b32)
-			b = _add(b, 
-				rol( 
-					_add(a, 
+			b = _add(b,
+				rol(
+					_add(a,
 						_add(nf, _add(sin32, dw32))
 					), b32
 				)

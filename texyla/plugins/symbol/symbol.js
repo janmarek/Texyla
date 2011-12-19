@@ -1,7 +1,7 @@
 // Výchozí zvláštní znaky
 jQuery.texyla.setDefaults({
 	symbols: [
-		"&", "@", ["<", "&lt;"], [">", "&gt;"], "[", "]", "{", "}", "\\", 
+		"&", "@", ["<", "&lt;"], [">", "&gt;"], "[", "]", "{", "}", "\\",
 		"α", "β", "π", "µ", "Ω", "∑", "°", "∞", "≠", "±", "×", "÷", "≥",
 		"≤", "®", "™", "€", "£", "$", "~", "^", "·", "•"
 	]
@@ -12,7 +12,7 @@ jQuery.texyla.addWindow("symbol", {
 
 	createContent: function () {
 		var _this = this;
-		
+
 		var el = jQuery('<div></div>');
 		var symbolsEl = jQuery('<div class="symbols"></div>').appendTo(el);
 

@@ -23,7 +23,7 @@ class ForumTexy extends Texy
 		$this->allowed['heading/underlined'] = false;
 		$this->allowed['link/definition'] = false;
 		$this->allowed['image/definition'] = false;
-		
+
 		// spojování textu v odstavcích po enteru
 		$this->mergeLines = true;
 

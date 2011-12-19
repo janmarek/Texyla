@@ -36,12 +36,12 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 	block: function(what) {
 		this.tag('/--' + what + this.lf(), this.lf() + '\\--');
 	},
-	
+
 	// odkaz
 	link: function(addr) {
 		if (addr) this.phrase('"', '":' + addr);
 	},
-	
+
 	// acronym
 	acronym: function(title) {
 		this.update();
@@ -49,22 +49,22 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 			// Nejsou potřeba uvozovky. př.: slovo((titulek))
 			if (this.text().match(/^[a-zA-ZěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]{2,}$/)) {
 				this.tag('','((' + title + '))');
-				
+
 			// Jsou potřeba uvozovky. př.: "třeba dvě slova"((titulek))
 			} else {
 				this.phrase('"', '"((' + title + '))');
 			}
 		}
 	},
-	
+
 	// čára
 	line: function() {
 		this.update();
 		var lf = this.lf();
-		
+
 		// text
 		var lineText = lf + lf + '-------------------' + lf + lf;
-		
+
 		// vložit
 		if (this.isCursor()) this.tag(lineText, ''); else  this.replace(lineText);
 	},
@@ -73,12 +73,12 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 	align: function(type) {
 		this.update();
 		var lf = this.lf();
-		
+
 		var start = '.' + type + lf;
 		var newPar = lf + lf;
 		var found = this.textarea.value.substring(0, this.start).lastIndexOf(newPar);
 		var beforePar = found + newPar.length;
-		
+
 		if (found ==- 1) {
 			this.textarea.value = start + this.textarea.value;
 		} else {
@@ -121,7 +121,7 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 		var lines = this.text().split(lf);
 		var lineCt = this.isCursor() ? 3 : lines.length;
 		var replacement = '';
-		
+
 		for (var i = 1; i <= lineCt; i++) {
 			var bullet = {
 				ul: '-',
@@ -133,13 +133,13 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 				smallAlphabet: this._toLetter(i) + ')',
 				bigAlphabet: this._toLetter(i).toUpperCase() + ')'
 			};
-			
+
 			replacement += bullet[type] + ' ' + (!this.isCursor() ? lines[i - 1] : '') + (i != lineCt ? lf : '');
-			
+
 			// seznam okolo kurzoru - pozice kurzoru
 			if (this.isCursor() && i === 1)  var curPos = replacement.length - 1;
 		}
-		
+
 		if (this.isCursor()) {
 			this.tag(replacement.substring(0, curPos), replacement.substring(curPos));
 		} else {
@@ -169,19 +169,19 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 
 		this.replace(replacement.join(this.lf()));
 	},
-	
+
 	// vytvoří nadpis, podtrhne podle type
 	heading: function(type) {
 		this.selectBlock();
 		var lf = this.lf();
-		
+
 		// podtržení
 		function underline(len, type) {
 			var txt = '';
 			for (var i = 0; i < Math.max(3, len); i++) {
 				txt += type;
 			}
-			
+
 			return txt;
 		}
 
@@ -191,43 +191,43 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 			if (headingText) {
 				this.tag(headingText + lf + underline(headingText.length, type) + lf, '');
 			}
-			
+
 		// Vyrobí nadpis z výběru
 		} else {
 			this.tag('', lf + underline(this.length(), type));
 		}
 	},
-	
+
 	// obrázek
-	img: function(src, alt, align, descr) {		
+	img: function(src, alt, align, descr) {
 		// Zarovnání na střed
 		var imgT = '';
-		
+
 		if (align == '<>') {
 			imgT += this.lf() + '.<>' + this.lf();
 			align = false;
 		}
-		
+
 		// Začátek
 		imgT += '[* ' + src + ' ';
-		
+
 		// Popis
 		imgT += alt ? '.('+ alt +') ' : '';
-		
+
 		// Zarovnání
 		imgT += (align ? align : '*') + ']';
-		
+
 		// Popisek
 		imgT += descr ? ' *** ' + alt : '';
-		
+
 		this.replace(imgT);
 	},
-	
+
 	// tabulka
 	table: function(cols, rows, header) {
 		var lf = this.lf();
 		var tabTxt = lf;
-		
+
 		for (var i = 0; i < rows; i++) {
 			// Hlavička nahoře
 			if (header === 'n' && i < 2) {
@@ -237,25 +237,25 @@ Texy.prototype = jQuery.extend({}, Selection.prototype, {
 				}
 				tabTxt += lf;
 			}
-			
+
 			// Buňky
 			for (j = 0; j < cols; j++) {
 				// Hlavička vlevo
 				if (header === 'l' && j === 0) {
 					tabTxt += "|* \t";
-					
+
 				// Buňka bez hlavičky
 				} else {
-					tabTxt += "| \t"; 
+					tabTxt += "| \t";
 				}
-				
+
 				// pozice kurzoru
 				if (i === 0 && j === 0) var curPos = tabTxt.length - 1;
 			}
 			tabTxt += '|' + lf;
 		}
 		tabTxt += lf;
-		
+
 		// Vloží tabulku
 		this.tag(tabTxt.substring(0, curPos), tabTxt.substring(curPos));
 	}
