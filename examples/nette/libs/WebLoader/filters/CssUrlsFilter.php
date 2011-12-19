@@ -12,7 +12,7 @@ use Nette\String;
  * @license MIT
  */
 class CssUrlsFilter extends \Nette\Object {
-	
+
 	/**
 	 * Make relative url absolute
 	 * @param string image url
@@ -99,5 +99,5 @@ class CssUrlsFilter extends \Nette\Object {
 			$code
 		);
 	}
-	
+
 }

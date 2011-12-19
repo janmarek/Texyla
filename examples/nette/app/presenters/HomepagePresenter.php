@@ -17,7 +17,7 @@ class HomepagePresenter extends BasePresenter
 
 		$form->addTextarea("text", "Text", 110, 20)
 			->getControlPrototype()->class("texyla");
-		
+
 		$form->addSubmit("s", "Submit");
 
 		return $form;

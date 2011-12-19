@@ -1,6 +1,6 @@
 jQuery.texyla.addWindow("link", {
 	dimensions: [330, 180],
-	
+
 	createContent: function () {
 		return jQuery(
 			'<div><table><tbody><tr>' +
@@ -12,7 +12,7 @@ jQuery.texyla.addWindow("link", {
 			'</tr></tbody></table></div>'
 		);
 	},
-	
+
 	action: function (el) {
 		var txt = el.find(".link-text").val();
 		txt = txt == '' ? '' : '"' + txt + '":';

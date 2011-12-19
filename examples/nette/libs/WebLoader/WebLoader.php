@@ -345,7 +345,7 @@ abstract class WebLoader extends \Nette\Application\Control {
 		if ($files === null) {
 			$files = $this->files;
 		}
-		
+
 		$modified = 0;
 
 		foreach ($files as $file) {

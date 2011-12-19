@@ -13,15 +13,15 @@ jQuery.texyla.initPlugin(function () {
 jQuery.texyla.extend({
 	keys: function(e) {
 		var pressedKey = e.charCode || e.keyCode || -1;
-	
+
 		var action = false;
-	
+
 		// tučně (Ctrl + B nebo např. Shift + Ctrl + B)
-		if (e.ctrlKey && pressedKey == 66 && !e.altKey) {			
+		if (e.ctrlKey && pressedKey == 66 && !e.altKey) {
 			this.texy.bold();
-			action = true;				
+			action = true;
 		}
-	
+
 		// kurzíva (Ctrl + I nebo např. Alt + Ctrl + I)
 		if (e.ctrlKey && pressedKey == 73) {
 			this.texy.italic();
@@ -33,7 +33,7 @@ jQuery.texyla.extend({
 			this.texy.unindent();
 			action = true;
 		}
-	
+
 		// tabulátor (tab)
 		if (pressedKey == 9 && !e.shiftKey) {
 			if (this.texy.update().text().indexOf(this.texy.lf()) == -1) {
@@ -43,25 +43,25 @@ jQuery.texyla.extend({
 			}
 			action = true;
 		}
-	
+
 		// Odeslat formulář (Ctrl + S nebo např. Shift + Ctrl + S)
 		if (e.ctrlKey && pressedKey == 83) {
 			this.submit();
 			action = true;
 		}
-	
+
 		// zruší defaultní akce
 		if (action) {
 			// Firefox & Opera (ale ta na to docela sere co se týče klávesových zkratek programu)
 			if (e.preventDefault && e.stopPropagation) {
 				e.preventDefault();
 				e.stopPropagation();
-	
+
 			// IE
 			} else {
 				window.event.cancelBubble = true;
 				window.event.returnValue = false;
 			}
-		}			
+		}
 	}
 });

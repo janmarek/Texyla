@@ -30,7 +30,7 @@ class AdminTexy extends Texy
 		// images
 		$this->imageModule->fileRoot = __DIR__ . "/images";
 		$this->imageModule->root = "images/";
-		
+
 		// přidávání youtube.com, stream.cz videa, flash a gravatar
 		$this->addHandler('image', array(__CLASS__, 'youtubeHandler'));
 		$this->addHandler('image', array(__CLASS__, 'streamHandler'));

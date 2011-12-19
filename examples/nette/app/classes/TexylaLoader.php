@@ -70,5 +70,5 @@ class TexylaLoader extends WebLoader\JavaScriptLoader
 			return basename($files[0]);
 		}
 	}
-	
+
 }

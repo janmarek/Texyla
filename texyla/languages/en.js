@@ -23,7 +23,7 @@ jQuery.texyla.addStrings("en", {
 	btn_olRomansSmall: "Small roman numbers",
 	btn_olAlphabetSmall: "Small letters",
 	btn_olAlphabetBig: "Capital letters",
-	
+
 	btn_blockquote: "Quotation block",
 
 	btn_sub: "Lower index",
@@ -72,14 +72,14 @@ jQuery.texyla.addStrings("en", {
 	syntaxUrl: 'http://texy.info/en/syntax',
 
 	/** plugins ***************************************************************/
-	
+
 	// color
 	btn_color: "Colors",
 	win_color: "Choose a color",
 	colorSelectModeHeading: "Colorize:",
 	colorSelectModeText: "text",
 	colorSelectModeBackground: 'background',
-	
+
 	// emoticon
 	btn_emoticon: "Emoticon",
 	win_emoticon: "Insert an emoticon",

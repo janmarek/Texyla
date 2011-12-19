@@ -96,7 +96,7 @@ jQuery.texyla.addWindow("files", {
 				return false;
 			}).appendTo(el.find("div.toolbar"));
 		}
-		
+
 
 		/**
 		 * files quick filter
@@ -126,7 +126,7 @@ jQuery.texyla.addWindow("files", {
 				});
 			});
 		}
-		
+
 
 		function loadList(dir) {
 			currentDir = dir;
@@ -144,7 +144,7 @@ jQuery.texyla.addWindow("files", {
 						_this.error(data.error);
 						return;
 					}
-					
+
 					el.find("p.wait").hide();
 					el.find("div.toolbar, div.files-filter, div.files-gallery").show();
 					gallery.empty();
@@ -211,7 +211,7 @@ jQuery.texyla.addWindow("files", {
 								}(list[i]);
 								break;
 						}
-						
+
 						item.find(".image img").click(fnc);
 						item.find(".label span.name a").click(fnc);
 
