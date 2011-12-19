@@ -29,7 +29,7 @@ class VariablesFilter extends \Nette\Object {
 			$this->$key = $value;
 		}
 	}
-	
+
 
 	/**
 	 * Set delimiter
@@ -56,7 +56,7 @@ class VariablesFilter extends \Nette\Object {
 		$variables = array_map(function ($key) use ($start, $end) {
 			return $start . $key . $end;
 		}, array_keys($this->variables));
-		
+
 		$values = array_values($this->variables);
 
 		return str_replace($variables, $values, $code);

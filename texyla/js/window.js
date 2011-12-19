@@ -10,7 +10,7 @@ jQuery.texyla.initPlugin(function () {
  */
 jQuery.texyla.addWindow = function (name, options) {
 	Texyla.prototype.windowConfigs[name] = options;
-	
+
 	// nastavit velikosti okna
 	if (options.dimensions) {
 		var defaults = {};
@@ -45,19 +45,19 @@ jQuery.texyla.extend({
 			return this.getWindow(name).dialog("moveToTop");
 		}
 
-		// otevřít nové		
+		// otevřít nové
 		var config = Texyla.prototype.windowConfigs[name];
 		var el = config.createContent.call(this);
 
 		// přiřadit do otevřených oken
 		this.openedWindows[name] = el;
-		
+
 		// nastavení dialogu
 		var options = config.options || {};
 
 		// titulek
 		options.title = config.title ? config.title : this.lng["win_" + name];
-		
+
 		// rozměry
 		var dimensions = this.options[name + "WindowDimensions"];
 		if (dimensions) {
@@ -112,7 +112,7 @@ jQuery.texyla.extend({
 	getWindowAction: function (name) {
 		return Texyla.prototype.windowConfigs[name].action;
 	},
-	
+
 	/**
 	 *	Získat objekt okna
 	 *	@param string name jméno okna

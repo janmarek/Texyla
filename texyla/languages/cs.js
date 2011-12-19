@@ -44,7 +44,7 @@ jQuery.texyla.addStrings("cs", {
 	btn_codeInline: "Inline kód",
 	btn_html: "HTML",
 	btn_notexy: "Inline text",
-	
+
 	btn_edit: "Upravit",
 	btn_preview: "Náhled",
 	btn_htmlPreview: "HTML",
@@ -70,7 +70,7 @@ jQuery.texyla.addStrings("cs", {
 
 	// adresy
 	syntaxUrl: "http://texy.info/cs/syntax",
-	
+
 	/** pluginy ***************************************************************/
 
 	// color

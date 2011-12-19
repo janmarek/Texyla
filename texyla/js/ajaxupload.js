@@ -38,7 +38,7 @@ jQuery.fn.extend({
 				body = iframeEl.contentWindow.document.body;
 			}
 			var content = jQuery(body).text();
-			
+
 			if (!content) {
 				callback();
 			} else {
@@ -58,7 +58,7 @@ jQuery.fn.extend({
 			method: "post",
 			enctype: "multipart/form-data"
 		}).submit();
-		
+
 		jQuery.event.trigger("ajaxStart");
 	}
 });

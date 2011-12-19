@@ -35,6 +35,6 @@ jQuery.texyla.addWindow("img", {
 			el.find(".descr").get(0).checked
 		);
 	},
-	
+
 	dimensions: [350, 250]
 });

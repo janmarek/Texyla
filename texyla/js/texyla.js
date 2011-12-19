@@ -18,14 +18,14 @@ jQuery.extend({
 function Texyla(textarea, options) {
 	// uloží nastavení
 	this.options = jQuery.extend({}, this.defaultOptions, options || {});
-	
+
 	// uložím jQuery objekt textarey
 	this.textarea = jQuery(textarea);
-	
+
 	// ochrana proti vícenásobnému ztexylování
 	if (this.textarea.data("texyla")) return false;
 	this.textarea.data("texyla", true);
-	
+
 	// nastavím jazyk
 	var lng = this.options.language;
 	if (!this.languages[lng]) {
@@ -33,18 +33,18 @@ function Texyla(textarea, options) {
 		return false;
 	}
 	this.lng = this.languages[lng];
-	
+
 	// náhrada za %texyla_base% v adresách
 	this.baseDir = this.options.baseDir || this.baseDir;
 	this.options.iconPath = this.expand(this.options.iconPath);
 	this.options.previewPath = this.expand(this.options.previewPath);
-	
+
 	// vytvořím texy pro texylu
 	this.texy = new Texy(this);
-	
+
 	// obalit ovládacíma blbostma
 	this.wrap();
-	
+
 	// spustí pluginy
 	for (var i = 0; i < this.initPlugins.length; i++) {
 		this.initPlugins[i].apply(this);
@@ -57,7 +57,7 @@ Texyla.prototype.expand = function (text, variable) {
 	if (variable) {
 		text = text.replace("%var%", variable);
 	}
-	
+
 	return text;
 };
 

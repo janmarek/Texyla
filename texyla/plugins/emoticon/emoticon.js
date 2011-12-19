@@ -11,7 +11,7 @@ $.texyla.setDefaults({
 		':-?': 'confused',
 		':-x': 'mad',
 		':-P': 'razz',
-		':-|': 'neutral'		
+		':-|': 'neutral'
 	}
 });
 
