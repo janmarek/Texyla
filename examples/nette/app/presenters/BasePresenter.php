@@ -1,11 +1,8 @@
 <?php
-
-use Nette\Environment;
-
 /**
  * Base class for all application presenters
  */
-abstract class BasePresenter extends Nette\Application\Presenter
+abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
 	/** @var bool */
 	public $oldLayoutMode = false;
@@ -18,10 +15,9 @@ abstract class BasePresenter extends Nette\Application\Presenter
 	 */
 	protected function createComponentTexyla()
 	{
-		$texyla = new TexylaLoader;
-
-		$texyla->filters[] = new WebLoader\VariablesFilter(array(
-			"baseUri" => Environment::getVariable("baseUri"),
+		$baseUri = $this->context->httpRequest->url->baseUrl;
+		$filter = new WebLoader\Filter\VariablesFilter(array(
+			"baseUri" => $baseUri,
 			"previewPath" => $this->link("Texyla:preview"),
 			"filesPath" => $this->link("Texyla:listFiles"),
 			"filesUploadPath" => $this->link("Texyla:upload"),
@@ -30,8 +26,7 @@ abstract class BasePresenter extends Nette\Application\Presenter
 			"filesDeletePath" => $this->link("Texyla:delete"),
 		));
 
-		$texyla->addFile(WWW_DIR . "/js/texyla-init.js");
-
+		$texyla = new TexylaLoader($filter, $baseUri."temp/");
 		return $texyla;
 	}
 }
