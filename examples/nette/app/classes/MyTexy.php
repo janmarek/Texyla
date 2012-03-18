@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . "/../../../libs/texy.min.php";
+require_once LIBS_DIR . "/Texy/texy.min.php";
 
-use Nette\Environment, Nette\String;
-use Nette\Templates\Template, Nette\Templates\LatteFilter;
+use Nette\Application\UI, Nette\Utils\Strings;
+use Nette\Templating\FileTemplate, Nette\Latte\Engine;
 
 /**
  * My Texy
@@ -16,12 +16,12 @@ class MyTexy extends Texy
 	/**
 	 * Construct
 	 */
-	public function __construct()
+	public function __construct($baseUri)
 	{
 		parent::__construct();
 
 		// output
-		$this->setOutputMode(self::HTML4_TRANSITIONAL);
+		$this->setOutputMode(self::HTML5);
 		$this->htmlOutputModule->removeOptional = false;
 		self::$advertisingNotice = false;
 
@@ -38,7 +38,7 @@ class MyTexy extends Texy
 
 		// images
 		$this->imageModule->fileRoot = WWW_DIR . "/files";
-		$this->imageModule->root = Environment::getVariable("baseUri") . "files/";
+		$this->imageModule->root = $baseUri . "/files/";
 
 		// flash, youtube.com, stream.cz, gravatar handlers
 		$this->addHandler('image', array($this, 'youtubeHandler'));
@@ -57,7 +57,7 @@ class MyTexy extends Texy
 	private function createTemplate()
 	{
 		$template = new FileTemplate;
-		$template->registerFilter(new LatteFilter);
+		$template->registerFilter(new Engine);
 		return $template;
 	}
 
@@ -78,7 +78,7 @@ class MyTexy extends Texy
 
 		$url = $link->URL;
 
-		if (String::startsWith($url, "plink://")) {
+		if (Strings::startsWith($url, "plink://")) {
 			$url = substr($url, 8);
 			list($presenter, $params) = explode("?", $url, 2);
 
@@ -88,7 +88,7 @@ class MyTexy extends Texy
 				parse_str($params, $arr);
 			}
 
-			$link->URL = Environment::getApplication()->getPresenter()->link($presenter, $arr);
+			$link->URL = $this->presenter->link($presenter, $arr);
 		}
 
 		return $invocation->proceed();
@@ -114,7 +114,7 @@ class MyTexy extends Texy
 			return $invocation->proceed();
 		}
 
-		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@youtube.phtml");
+		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@youtube.latte");
 		$template->id = $parts[1];
 		if ($image->width) $template->width = $image->width;
 		if ($image->height) $template->height = $image->height;
@@ -136,11 +136,11 @@ class MyTexy extends Texy
 	 */
 	public function flashHandler($invocation, $image, $link)
 	{
-		if (!String::endsWith($image->URL, ".swf")) {
+		if (!Strings::endsWith($image->URL, ".swf")) {
 			return $invocation->proceed();
 		}
 
-		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@flash.phtml");
+		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@flash.latte");
 		$template->url = Texy::prependRoot($image->URL, $this->imageModule->root);
 		$template->width = $image->width;
 		$template->height = $image->height;
@@ -169,7 +169,7 @@ class MyTexy extends Texy
 			return $invocation->proceed();
 		}
 
-		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@stream.phtml");
+		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@stream.latte");
 		$template->id = $parts[1];
 		if ($image->width) $template->width = $image->width;
 		if ($image->height) $template->height = $image->height;
@@ -197,7 +197,7 @@ class MyTexy extends Texy
 			return $invocation->proceed();
 		}
 
-		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@gravatar.phtml");
+		$template = $this->createTemplate()->setFile(APP_DIR . "/templates/inc/@gravatar.latte");
 		$template->email = $parts[1];
 		if ($image->width) $template->width = $image->width;
 		if ($image->height) $template->height = $image->height;

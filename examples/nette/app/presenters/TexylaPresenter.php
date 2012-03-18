@@ -1,7 +1,7 @@
 <?php
 
-use Nette\Environment, Nette\String, Nette\Image;
-use Nette\Application\RenderResponse, Nette\Application\JsonResponse;
+use Nette\Application\UI, Nette\Utils\Strings, Nette\Image;
+use Nette\Application\Responses\TextResponse, Nette\Application\Responses\JsonResponse;
 
 /**
  * Texyla presenter
@@ -24,18 +24,17 @@ class TexylaPresenter extends BasePresenter
 	private $tempUri;
 
 
-
 	/**
 	 * Startup
 	 */
 	public function startup()
 	{
 		parent::startup();
-		$texy = Environment::getService("Texy");
+		$texy = $this->getService('Texy');
 		$this->baseFolderPath = $texy->imageModule->fileRoot;
 		$this->baseFolderUri = $texy->imageModule->root;
-		$this->tempDir = WWW_DIR . "/webtemp";
-		$this->tempUri = Environment::getVariable("baseUri") . "/webtemp";
+		$this->tempDir = TEMP_DIR;
+		$this->tempUri = $this->template->basePath . "/temp";
 	}
 
 
@@ -45,11 +44,11 @@ class TexylaPresenter extends BasePresenter
 	 */
 	public function actionPreview()
 	{
-		$texy = Environment::getService("Texy");
-		$html = $texy->process(Environment::getHttpRequest()->getPost("texy"));
-		$this->sendResponse(new RenderResponse($html));
+		$texy = $this->getService('Texy');
+		$httpRequest = $this->context->httpRequest;
+		$html = $texy->process($httpRequest->getPost("texy"));
+		$this->sendResponse(new TextResponse($html));
 	}
-
 
 
 	// files plugin
@@ -57,7 +56,7 @@ class TexylaPresenter extends BasePresenter
 
 
 	/**
-	 * Poslat chybovou zprávu
+	 * Send error message
 	 * @param string $msg
 	 */
 	private function sendError($msg)
@@ -70,14 +69,14 @@ class TexylaPresenter extends BasePresenter
 
 
 	/**
-	 * Získá a zkontroluje cestu ke složce
+	 * Get and check path to folder
 	 * @param string $folder
 	 */
 	protected function getFolderPath($folder)
 	{
 		$folderPath = realpath($this->baseFolderPath . ($folder ? "/" . $folder : ""));
 
-		if (!is_dir($folderPath) || !is_writable($folderPath) || !String::startsWith($folderPath, realpath($this->baseFolderPath))) {
+		if (!is_dir($folderPath) || !is_writable($folderPath) || !Strings::startsWith($folderPath, realpath($this->baseFolderPath))) {
 			throw new InvalidArgumentException;
 		}
 
@@ -87,7 +86,7 @@ class TexylaPresenter extends BasePresenter
 
 
 	/**
-	 * Název souboru s cachovaným náhledem obrázku ve file browseru
+	 * File name with cached preview image in file browser
 	 * @param string $path
 	 * @return string
 	 */
@@ -100,7 +99,7 @@ class TexylaPresenter extends BasePresenter
 
 
 	/**
-	 * File browser - projít soubory
+	 * File browser - list files
 	 * @param string $folder
 	 */
 	public function actionListFiles($folder = "")
@@ -132,7 +131,7 @@ class TexylaPresenter extends BasePresenter
 			$fileName = $fileInfo->getFileName();
 
 			// skip hidden files, . and ..
-			if (String::startsWith($fileName, "."))
+			if (Strings::startsWith($fileName, "."))
 				continue;
 
 			// filename with folder
@@ -184,7 +183,7 @@ class TexylaPresenter extends BasePresenter
 
 
 	/**
-	 * Vygenerovat a zobrazit náhled obrázku ve file browseru
+	 * Genarate and show preview of the image in file browser
 	 * @param string $key
 	 */
 	public function actionThumbnail($key)
@@ -199,23 +198,24 @@ class TexylaPresenter extends BasePresenter
 			Image::fromString(Image::EMPTY_GIF)->send(Image::GIF);
 		}
 
-		$this->terminate()
+		$this->terminate();
 	}
 
 
-
 	/**
-	 * Upload souboru
+	 * File upload
 	 */
 	public function actionUpload()
 	{
+		$httpRequest = $this->context->httpRequest;
+		
 		// check user rights
 //		if (!Environment::getUser()->isAllowed("files", "upload")) {
 //			$this->sendError("Access denied.");
 //		}
 
 		// path
-		$folder = Environment::getHttpRequest()->getPost("folder");
+		$folder = $httpRequest->getPost("folder");
 
 		try {
 			$folderPath = $this->getFolderPath($folder);
@@ -224,7 +224,7 @@ class TexylaPresenter extends BasePresenter
 		}
 
 		// file
-		$file = Environment::getHttpRequest()->getFile("file");
+		$file = $httpRequest->getFile("file");
 
 		// check
 		if ($file === null || !$file->isOk()) {
@@ -232,7 +232,7 @@ class TexylaPresenter extends BasePresenter
 		}
 
 		// move
-		$fileName = String::webalize($file->getName(), ".");
+		$fileName = Strings::webalize($file->getName(), ".");
 		$path = $folderPath . "/" . $fileName;
 
 		if (@$file->move($path)) {
@@ -261,7 +261,7 @@ class TexylaPresenter extends BasePresenter
 	 */
 	public function actionMkDir($folder, $name)
 	{
-		$name = String::webalize($name);
+		$name = Strings::webalize($name);
 		$path = $this->getFolderPath($folder) . "/" . $name;
 
 		if (mkdir($path)) {
@@ -320,7 +320,7 @@ class TexylaPresenter extends BasePresenter
 	public function actionRename($folder, $oldname, $newname)
 	{
 		$oldpath = $this->getFolderPath($folder) . "/" . $oldname;
-		$newpath = $this->getFolderPath($folder) . "/" . String::webalize($newname, ".");
+		$newpath = $this->getFolderPath($folder) . "/" . Strings::webalize($newname, ".");
 
 		if (!file_exists($oldpath)) {
 			$this->sendError("File does not exist.");
