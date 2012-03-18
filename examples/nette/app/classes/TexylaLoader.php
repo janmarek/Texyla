@@ -1,74 +1,65 @@
 <?php
-
-use Nette\Environment, Nette\IComponentContainer;
-
 /**
  * Texyla loader
  *
  * @author Jan Marek
  */
-class TexylaLoader extends WebLoader\JavaScriptLoader
+class TexylaLoader extends WebLoader\Nette\JavaScriptLoader
 {
+	/** @var string */
+	private $tempUri;
 	/**
+	
+	
 	 * Construct
-	 * @param IComponentContainer parent
+	 * @param IContainer parent
 	 * @param string name
 	 */
-	public function __construct(IComponentContainer $parent = null, $name = null) {
-		parent::__construct($parent, $name);
-
-		$this->tempUri = Environment::getVariable("baseUri") . "webtemp";
-		$this->tempPath = WWW_DIR . "/webtemp";
-		$this->sourcePath = APP_DIR . "/../../../texyla";
-
-		$this->addFiles(array(
+	public function __construct($filter, $tempUri) {
+		
+		$files = new \WebLoader\FileCollection(WWW_DIR . '/js/');
+		$files->addFiles(array(
 			// core
-			"js/texyla.js",
-			"js/selection.js",
-			"js/texy.js",
-			"js/buttons.js",
-			"js/dom.js",
-			"js/view.js",
-			"js/ajaxupload.js",
-			"js/window.js",
+			"texyla/js/texyla.js",
+			"texyla/js/selection.js",
+			"texyla/js/texy.js",
+			"texyla/js/buttons.js",
+			"texyla/js/dom.js",
+			"texyla/js/view.js",
+			"texyla/js/ajaxupload.js",
+			"texyla/js/window.js",
 
 			// languages
-			"languages/cs.js",
-			"languages/sk.js",
-			"languages/en.js",
+			"texyla/languages/cs.js",
+			"texyla/languages/sk.js",
+			"texyla/languages/en.js",
 
 			// plugins
-			"plugins/keys/keys.js",
-			"plugins/resizableTextarea/resizableTextarea.js",
-			"plugins/img/img.js",
-			"plugins/table/table.js",
-			"plugins/link/link.js",
-			"plugins/emoticon/emoticon.js",
-			"plugins/symbol/symbol.js",
-			"plugins/files/files.js",
-			"plugins/color/color.js",
-			"plugins/textTransform/textTransform.js",
-			"plugins/youtube/youtube.js",
-			"plugins/gravatar/gravatar.js",
+			"texyla/plugins/keys/keys.js",
+			"texyla/plugins/resizableTextarea/resizableTextarea.js",
+			"texyla/plugins/img/img.js",
+			"texyla/plugins/table/table.js",
+			"texyla/plugins/link/link.js",
+			"texyla/plugins/emoticon/emoticon.js",
+			"texyla/plugins/symbol/symbol.js",
+			"texyla/plugins/files/files.js",
+			"texyla/plugins/color/color.js",
+			"texyla/plugins/textTransform/textTransform.js",
+			"texyla/plugins/youtube/youtube.js",
+			"texyla/plugins/gravatar/gravatar.js",
+			
+			"js/texyla-init.js",
 		));
 
-		$this->filters[] = "JSMin::minify";
-	}
+	    $compiler = \WebLoader\Compiler::createJsCompiler($files, TEMP_DIR);
 
+		// setup filter
+		$compiler->addFilter($filter);
 
+		// minifying JS
+		$compiler->addFilter("JSMin::minify");
 
-	/**
-	 * Generated filename
-	 * @param array $files
-	 * @return string
-	 */
-	public function getGeneratedFilename(array $files = null)
-	{
-		if (count($files) > 0) {
-			return "texyla.js";
-		} else {
-			return basename($files[0]);
-		}
+		parent::__construct($compiler, $tempUri);
 	}
 
 }
