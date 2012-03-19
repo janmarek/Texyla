@@ -17,7 +17,7 @@ class TexylaLoader extends WebLoader\Nette\JavaScriptLoader
 	 */
 	public function __construct($filter, $tempUri) {
 		
-		$files = new \WebLoader\FileCollection(WWW_DIR . '/js/');
+		$files = new \WebLoader\FileCollection(WWW_DIR . "/js/");
 		$files->addFiles(array(
 			// core
 			"texyla/js/texyla.js",
@@ -51,7 +51,7 @@ class TexylaLoader extends WebLoader\Nette\JavaScriptLoader
 			"js/texyla-init.js",
 		));
 
-	    $compiler = \WebLoader\Compiler::createJsCompiler($files, TEMP_DIR);
+	    $compiler = \WebLoader\Compiler::createJsCompiler($files, WWW_DIR."/webtemp");
 
 		// setup filter
 		$compiler->addFilter($filter);
