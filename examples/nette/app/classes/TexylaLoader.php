@@ -51,7 +51,7 @@ class TexylaLoader extends WebLoader\Nette\JavaScriptLoader
 			"js/texyla-init.js",
 		));
 
-	    $compiler = \WebLoader\Compiler::createJsCompiler($files, WWW_DIR."/temp");
+	    $compiler = \WebLoader\Compiler::createJsCompiler($files, WWW_DIR."/webtemp");
 
 		// setup filter
 		$compiler->addFilter($filter);
