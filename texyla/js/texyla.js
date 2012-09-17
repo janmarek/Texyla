@@ -118,7 +118,7 @@ Texyla.prototype.error = function (message) {
 };
 
 // výchozí adresář
-Texyla.prototype.baseDir = jQuery("head script:last").attr("src").replace(/(\/js)?\/?[\w-]+\.js$/, '');
+Texyla.prototype.baseDir = null;
 
 // jazyky
 Texyla.prototype.languages = {};
