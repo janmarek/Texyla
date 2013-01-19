@@ -77,7 +77,7 @@ class TexylaPresenter extends BasePresenter
 		$folderPath = realpath($this->baseFolderPath . ($folder ? "/" . $folder : ""));
 
 		if (!is_dir($folderPath) || !is_writable($folderPath) || !Strings::startsWith($folderPath, realpath($this->baseFolderPath))) {
-			throw new InvalidArgumentException;
+			throw new \Nette\InvalidArgumentException;
 		}
 
 		return $folderPath;
@@ -127,7 +127,7 @@ class TexylaPresenter extends BasePresenter
 			$folders[] = array("type" => "up", "name" => "..", "key" => $key,);
 		}
 
-		foreach (new DirectoryIterator($folderPath) as $fileInfo) {
+		foreach (new \DirectoryIterator($folderPath) as $fileInfo) {
 			$fileName = $fileInfo->getFileName();
 
 			// skip hidden files, . and ..
