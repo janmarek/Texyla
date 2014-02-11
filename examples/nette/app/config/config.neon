@@ -1,0 +1,82 @@
+parameters:
+    libsDir: %appDir%/../libs
+
+php:
+    date.timezone: Europe/Prague
+
+nette:
+    application:
+        mapping:
+            *: App\*Module\*Presenter
+
+    session:
+        expiration: 14 days
+
+extensions:
+    webloader: WebLoader\Nette\Extension
+
+services:
+    # system services
+    - App\RouterFactory
+    router: @App\RouterFactory::createRouter
+    wlCssFilter: WebLoader\Filter\CssUrlsFilter(%wwwDir%)
+    cssMin: Services\CssMin
+    # custom services
+    - MyTexy(@httpRequest, %wwwDir%)
+
+
+factories:
+
+webloader:
+    css:
+        texyla:
+            files:
+                - %wwwDir%/texyla/css/style.css
+            filters:
+                - @wlCssFilter
+                - @cssMin
+        default:
+            files:
+                - screen.css
+            filters:
+                - @wlCssFilter
+                - @cssMin
+    js:
+        texyla:
+            files:
+            	# core
+                - %wwwDir%/texyla/js/texyla.js
+                - %wwwDir%/texyla/js/selection.js
+                - %wwwDir%/texyla/js/texy.js
+                - %wwwDir%/texyla/js/buttons.js
+                - %wwwDir%/texyla/js/dom.js
+                - %wwwDir%/texyla/js/view.js
+                - %wwwDir%/texyla/js/ajaxupload.js
+                - %wwwDir%/texyla/js/window.js
+                    
+                # languages
+                - %wwwDir%/texyla/languages/cs.js
+                - %wwwDir%/texyla/languages/sk.js
+                - %wwwDir%/texyla/languages/en.js
+                    
+                # plugins
+                - %wwwDir%/texyla/plugins/keys/keys.js
+                - %wwwDir%/texyla/plugins/resizableTextarea/resizableTextarea.js
+                - %wwwDir%/texyla/plugins/img/img.js
+                - %wwwDir%/texyla/plugins/table/table.js
+                - %wwwDir%/texyla/plugins/link/link.js
+                - %wwwDir%/texyla/plugins/emoticon/emoticon.js
+                - %wwwDir%/texyla/plugins/symbol/symbol.js
+                - %wwwDir%/texyla/plugins/files/files.js
+                - %wwwDir%/texyla/plugins/color/color.js
+                - %wwwDir%/texyla/plugins/textTransform/textTransform.js
+                - %wwwDir%/texyla/plugins/youtube/youtube.js
+                - %wwwDir%/texyla/plugins/gravatar/gravatar.js
+        default:
+            remoteFiles:
+                - http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js
+                - http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js
+                - http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/i18n/jquery-ui-i18n.min.js
+            files:
+                - %libsDir%/composer/nette/nette/client-side/netteForms.js
+
