@@ -104,7 +104,7 @@ Texyla.prototype.submit = function () {
 		}
 	}
 	if (typeof f.onsubmit == 'function') {
-		if (f.onsubmit()) {
+		if (f.onsubmit() !== false) {
 			submitnout();
 		}
 	} else {
