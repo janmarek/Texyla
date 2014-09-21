@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="robots" content="{$robots}" n:ifset="$robots">
+
+    <title>{block title|striptags}Texyla Example{/block}</title>
+
+    {block layoutStyles}{/block}
+    {block styles}{/block}
+
+    <link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
+    <link rel="shortcut icon" href="{$basePath}/favicon.ico">
+    {control css}
+    {control js}
+
+    {block head}{/block}
+</head>
+
+<body>
+    <script> document.documentElement.className += ' js' </script>
+
+    <div id="topMenu">{block topMenu}{/block}</div>
+
+    <div id="menu">
+        {block menu}{/block}
+    </div>
+
+    <div id="content">
+        <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+        {include #content}
+    </div>
+
+    {block scripts}{/block}
+    {include '@texyla.latte'}
+</body>
+</html>

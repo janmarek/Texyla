@@ -1,0 +1,66 @@
+/* textarea */
+div.texyla div.textarea-container {text-align:center; margin:5px 0; clear:left;}
+div.texyla div.textarea-container * {margin: auto !important;}
+
+/* lišta */
+div.texyla ul.toolbar {margin:0; padding:0 0 0 5px; height:30px;}
+div.texyla ul.toolbar li {margin:0; padding:0; list-style:none; float:left; width:30px; height:30px;}
+div.texyla ul.toolbar li span {display:block; padding:7px; cursor:pointer;}
+div.texyla ul.toolbar li img {display:block;}
+div.texyla ul.toolbar li.separator {width:5px; background:url("../img/separator.gif") no-repeat 50% 50%;}
+div.texyla ul.toolbar li.label {width:auto; line-height:30px; font-size: 90%; padding: 0 4px 0 7px;}
+
+/* menu */
+div.texyla ul.toolbar li.menu {z-index:2; background:url("../img/menu.gif") no-repeat 50% 50%; width:15px; position:relative;}
+div.texyla ul.toolbar li ul {display:none; top:29px; left:0; position:absolute; margin:0; padding:2px;}
+div.texyla ul.toolbar li ul li {padding: 0; height:auto; width:auto; display:block; cursor:pointer; float:none; white-space:nowrap;}
+div.texyla ul.toolbar li ul li span {background-position: 2px 50% !important; background-repeat:no-repeat; padding:3px 5px 3px 22px; display:block;}
+
+/* náhledy */
+div.view-header {line-height:30px; background-repeat:no-repeat; background:no-repeat 5px 50%; padding-left:26px;}
+div.preview-wrapper {background:white; overflow:auto; position: relative; margin:5px;}
+div.preview, pre.html-preview {padding:10px; margin:0;}
+div.preview-wait {border:1px solid #777; padding:10px 10px 10px 36px; background:url("../img/loader.gif") 10px 10px no-repeat; position:absolute; z-index:999;}
+
+/* tlačítkové lišty */
+div.texyla .bottom-toolbar {position:relative; padding: 0 5px 5px;}
+div.texyla .right-toolbar {position:absolute; right:0; top:0; margin-right:5px;}
+div.texyla .right-toolbar .btn, div.texyla .right-toolbar button {margin-left:5px;}
+div.texyla .span-tb, .twindow .span-tb, div.texyla .tabs {height:30px;}
+
+/* tlačítka */
+div.texyla .bottom-toolbar .btn, .twindow .btn {display:block; float:left; padding:0 0.5em; line-height:28px; cursor:pointer;}
+div.texyla .left-toolbar .btn, div.texyla .left-toolbar button {margin-right:5px;}
+div.texyla .btn .icon-span {background: no-repeat 0 50%; padding-left:20px;}
+div.texyla .bottom-toolbar button img {vertical-align:middle;}
+
+/* taby */
+div.texyla .bottom-toolbar .tabs {position:relative; top:-5px;}
+div.texyla .bottom-toolbar .tabs .btn {border-top:none; margin-right: 0;}
+div.texyla .bottom-toolbar .tabs .btn.ui-state-active {line-height:30px; cursor:default;}
+
+/* pluginy */
+.ui-dialog-content .tab-background {width:81px; height:81px; position:absolute; top:19px; right:21px; background:url('../plugins/table/table-background.gif');}
+.ui-dialog-content .tab-control {width:80px; height:80px; position:absolute; top:0; left:0;}
+.ui-dialog-content .tab-selection {width:16px; height:16px; position:absolute; top:0; left:0; background:url('../plugins/table/table-selection.gif');}
+
+.ui-dialog-content .emoticons {line-height:1em;}
+.ui-dialog-content .emoticons img {margin:1px; padding:5px; cursor:pointer; display:inline-block;}
+
+.ui-dialog-content .colors span {margin:1px; padding: 1px; cursor:pointer; display:inline-block;}
+.ui-dialog-content .colors span span {display:block; width: 12px; height:12px;}
+
+.ui-dialog-content .symbols span {cursor:pointer; padding:0; display:inline-block; text-align:center; width:2em; line-height:2em; margin:1px;}
+
+.ui-dialog-content p.wait {background:url("../img/loader.gif") 0 50% no-repeat; padding-left:26px; margin:0;}
+
+.ui-dialog-content .files-gallery .image {width:60px; text-align:center; vertical-align:middle; line-height:0;}
+.ui-dialog-content .files-gallery .image img {cursor:pointer;}
+.ui-dialog-content .files-gallery .label {display:table-cell; padding-left:5px;}
+.ui-dialog-content .files-gallery {padding:0;}
+.ui-dialog-content .gallery-item {margin-top:5px; font-size: 90%; width:100%}
+.ui-dialog-content .gallery-item td.buttons {font-size: 80%; text-align: right; visibility: hidden;}
+.ui-dialog-content .gallery-item:hover td.buttons {visibility: visible;}
+.ui-dialog-content div.files-filter {padding-top: 15px;}
+
+.ui-dialog-content div.clear {font-size:0; height:0; clear:both;}
