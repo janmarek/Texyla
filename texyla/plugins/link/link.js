@@ -9,13 +9,31 @@ jQuery.texyla.addWindow("link", {
 			'</tr><tr>' +
 				'<th><label>' + this.lng.linkUrl + '</label></th>' +
 				'<td><input type="text" class="link-url" value="http://"></td>' +
+			'</tr><tr>'+
+				'<th><label>'+ this.lng.linkTargetBlank + '</label></th>' +
+				'<td><input type="checkbox" class="link-target-blank"></td>' +
 			'</tr></tbody></table></div>'
 		);
 	},
 
 	action: function (el) {
 		var txt = el.find(".link-text").val();
-		txt = txt == '' ? '' : '"' + txt + '":';
-		this.texy.replace(txt + el.find(".link-url").val());
+		var targetBlank = el.find(".link-target-blank").is(":checked");
+		var link = el.find(".link-url").val();
+
+		if(txt != '') {
+			if(targetBlank == true) {
+				txt = '"' + txt + ' .{target:_blank}":';
+			} else {
+				txt = '"' + txt + '":';
+			}
+		}
+		else {
+			if(targetBlank == true) {
+				txt = '"' + link + ' .{target:_blank}":';
+			}
+		}
+
+		this.texy.replace(txt + link);
 	}
 });

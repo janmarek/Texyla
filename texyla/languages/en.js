@@ -111,6 +111,7 @@ jQuery.texyla.addStrings("en", {
 	// link
 	win_link: "Insert hyperlink",
 	linkText: "Link text",
+	linkTargetBlank: "Open in a new window",
 
 	// symbol
 	btn_symbol: "Symbol",

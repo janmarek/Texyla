@@ -112,6 +112,7 @@ jQuery.texyla.addStrings("sk", {
 	// link
 	win_link: "Vlo\u017ei\u0165 odkaz",
 	linkText: "Text odkazu",
+	linkTargetBlank: "Otvoriť v novom okne",
 
 	// symbol
 	btn_symbol: "Symbol",
