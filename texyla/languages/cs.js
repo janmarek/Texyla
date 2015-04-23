@@ -111,6 +111,7 @@ jQuery.texyla.addStrings("cs", {
 	// link
 	win_link: "Vlo\u017eit odkaz",
 	linkText: "Text odkazu",
+	linkTargetBlank: "Otevřít v novém okně",
 
 	// symbol
 	btn_symbol: "Symbol",
