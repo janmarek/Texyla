@@ -188,7 +188,7 @@ Texyla.prototype.createBottomToolbar = function () {
 			return jQuery(
 				"<span class='btn btn_" + icon + " ui-state-default " + (tabs ? "ui-corner-bottom" : "ui-corner-all") + "'>" +
 					"<span class='btn-left'></span><span class='btn-middle'>" +
-					"<span style='background-image: url(\"" +  iconUrl + "\");' class='icon-span'>" + name + "</span>" +
+					"<i class='sprite sprite-"+icon+" fl' style='margin-top: 5px;'></i><span class='icon-span'>" + name + "</span>" +
 					"</span><span class='btn-right'></span>" +
 				"</span>"
 			).click(func).hover(function () {
