@@ -80,8 +80,7 @@ Texyla.prototype.createToolbar = function () {
 		if (typeof item == "string") {
 			jQuery(
 				"<span title='" + this.lng["btn_" + item] + "'>" +
-				"<img src='" + this.expand(this.options.iconPath, item) +
-				"' width='" + this.options.iconWidth + "' height='" + this.options.iconHeight + "'>" +
+				"<i class='sprite sprite-" + item +"'></i>"+
 				"</span>"
 			)
 				.click(this.clickButton(item))
@@ -117,14 +116,9 @@ Texyla.prototype.createToolbar = function () {
 			for (var j = 0; j < item.length; j++) {
 				jQuery(
 					"<li class='btn_" + item[j] + " ui-corner-all'>" +
-					"<span style='background-image: url(\"" + this.expand(this.options.iconPath, item[j]) + "\");'>" +
+					"<span><i class='sprite sprite-" + item[j] +" fl'></i>" +
 					this.lng["btn_" + item[j]] + "</span></li>"
 				)
-					.hover(function () {
-						jQuery(this).addClass("ui-state-hover");
-					}, function () {
-						jQuery(this).removeClass("ui-state-hover");
-					})
 					.click(this.clickButton(item[j]))
 					.appendTo(toolbar2);
 			}
