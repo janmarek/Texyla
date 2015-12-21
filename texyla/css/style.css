@@ -14,7 +14,7 @@ div.texyla ul.toolbar li.label {width:auto; line-height:30px; font-size: 90%; pa
 div.texyla ul.toolbar li.menu {z-index:2; background:url("../img/menu.gif") no-repeat 50% 50%; width:15px; position:relative;}
 div.texyla ul.toolbar li ul {display:none; top:29px; left:0; position:absolute; margin:0; padding:2px;}
 div.texyla ul.toolbar li ul li {padding: 0; height:auto; width:auto; display:block; cursor:pointer; float:none; white-space:nowrap;}
-div.texyla ul.toolbar li ul li span {background-position: 2px 50% !important; background-repeat:no-repeat; padding:3px 5px 3px 22px; display:block;}
+div.texyla ul.toolbar li ul li span {background-position: 2px 50% !important; background-repeat:no-repeat; padding:3px 15px 3px 3px; display:block;}
 
 /* náhledy */
 div.view-header {line-height:30px; background-repeat:no-repeat; background:no-repeat 5px 50%; padding-left:26px;}
@@ -31,7 +31,7 @@ div.texyla .span-tb, .twindow .span-tb, div.texyla .tabs {height:30px;}
 /* tlačítka */
 div.texyla .bottom-toolbar .btn, .twindow .btn {display:block; float:left; padding:0 0.5em; line-height:28px; cursor:pointer;}
 div.texyla .left-toolbar .btn, div.texyla .left-toolbar button {margin-right:5px;}
-div.texyla .btn .icon-span {background: no-repeat 0 50%; padding-left:20px;}
+div.texyla .btn .icon-span {background: no-repeat 0 50%; padding-left:2px;}
 div.texyla .bottom-toolbar button img {vertical-align:middle;}
 
 /* taby */
@@ -64,3 +64,356 @@ div.texyla .bottom-toolbar .tabs .btn.ui-state-active {line-height:30px; cursor:
 .ui-dialog-content div.files-filter {padding-top: 15px;}
 
 .ui-dialog-content div.clear {font-size:0; height:0; clear:both;}
+
+.sprite {
+    background-image: url("../icons/spritesheet.png");
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.ui-corner-all:hover > span{color: #ffaa00;}
+
+.fl{float: left;}
+
+.sprite-acronym {
+    width: 16px;
+    height: 16px;
+    background-position: 0 0;
+}
+
+.sprite-blockquote {
+    width: 16px;
+    height: 16px;
+    background-position: -16px 0;
+}
+
+.sprite-bold {
+    width: 16px;
+    height: 16px;
+    background-position: -32px 0;
+}
+
+.sprite-center {
+    width: 16px;
+    height: 16px;
+    background-position: -48px 0;
+}
+
+.sprite-close {
+    width: 16px;
+    height: 16px;
+    background-position: -64px 0;
+}
+
+.sprite-code {
+    width: 16px;
+    height: 16px;
+    background-position: -80px 0;
+}
+
+.sprite-codeCss {
+    width: 16px;
+    height: 16px;
+    background-position: -96px 0;
+}
+
+.sprite-codeHtml {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -16px;
+}
+
+.sprite-codeInline {
+    width: 16px;
+    height: 16px;
+    background-position: -16px -16px;
+}
+
+.sprite-codeJs {
+    width: 16px;
+    height: 16px;
+    background-position: -32px -16px;
+}
+
+.sprite-codePhp {
+    width: 16px;
+    height: 16px;
+    background-position: -48px -16px;
+}
+
+.sprite-codeSql {
+    width: 16px;
+    height: 16px;
+    background-position: -64px -16px;
+}
+
+.sprite-color {
+    width: 16px;
+    height: 16px;
+    background-position: -80px -16px;
+}
+
+.sprite-comment {
+    width: 16px;
+    height: 16px;
+    background-position: -96px -16px;
+}
+
+.sprite-del {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -32px;
+}
+
+.sprite-div {
+    width: 16px;
+    height: 16px;
+    background-position: -16px -32px;
+}
+
+.sprite-edit {
+    width: 16px;
+    height: 16px;
+    background-position: -32px -32px;
+}
+
+.sprite-emoticon {
+    width: 16px;
+    height: 16px;
+    background-position: -48px -32px;
+}
+
+.sprite-files {
+    width: 16px;
+    height: 16px;
+    background-position: -64px -32px;
+}
+
+.sprite-flash {
+    width: 16px;
+    height: 16px;
+    background-position: -80px -32px;
+}
+
+.sprite-gravatar {
+    width: 16px;
+    height: 16px;
+    background-position: -96px -32px;
+}
+
+.sprite-h1 {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -48px;
+}
+
+.sprite-h2 {
+    width: 16px;
+    height: 16px;
+    background-position: -16px -48px;
+}
+
+.sprite-h3 {
+    width: 16px;
+    height: 16px;
+    background-position: -32px -48px;
+}
+
+.sprite-h4 {
+    width: 16px;
+    height: 16px;
+    background-position: -48px -48px;
+}
+
+.sprite-hr {
+    width: 16px;
+    height: 16px;
+    background-position: -64px -48px;
+}
+
+.sprite-html {
+    width: 16px;
+    height: 16px;
+    background-position: -80px -48px;
+}
+
+.sprite-htmlPreview {
+    width: 16px;
+    height: 16px;
+    background-position: -96px -48px;
+}
+
+.sprite-img {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -64px;
+}
+
+.sprite-imgUpload {
+    width: 16px;
+    height: 16px;
+    background-position: -16px -64px;
+}
+
+.sprite-img_gallery {
+    width: 16px;
+    height: 16px;
+    background-position: -32px -64px;
+}
+
+.sprite-indent {
+    width: 16px;
+    height: 16px;
+    background-position: -48px -64px;
+}
+
+.sprite-italic {
+    width: 16px;
+    height: 16px;
+    background-position: -64px -64px;
+}
+
+.sprite-justify {
+    width: 16px;
+    height: 16px;
+    background-position: -80px -64px;
+}
+
+.sprite-left {
+    width: 16px;
+    height: 16px;
+    background-position: -96px -64px;
+}
+
+.sprite-link {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -80px;
+}
+
+.sprite-notexy {
+    width: 16px;
+    height: 16px;
+    background-position: -16px -80px;
+}
+
+.sprite-ol {
+    width: 16px;
+    height: 16px;
+    background-position: -32px -80px;
+}
+
+.sprite-olAlphabetBig {
+    width: 16px;
+    height: 16px;
+    background-position: -48px -80px;
+}
+
+.sprite-olAlphabetSmall {
+    width: 16px;
+    height: 16px;
+    background-position: -64px -80px;
+}
+
+.sprite-olRomans {
+    width: 16px;
+    height: 16px;
+    background-position: -80px -80px;
+}
+
+.sprite-olRomansSmall {
+    width: 16px;
+    height: 16px;
+    background-position: -96px -80px;
+}
+
+.sprite-preview {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -96px;
+}
+
+.sprite-right {
+    width: 16px;
+    height: 16px;
+    background-position: -16px -96px;
+}
+
+.sprite-sub {
+    width: 16px;
+    height: 16px;
+    background-position: -32px -96px;
+}
+
+.sprite-submit {
+    width: 16px;
+    height: 16px;
+    background-position: -48px -96px;
+}
+
+.sprite-sup {
+    width: 16px;
+    height: 16px;
+    background-position: -64px -96px;
+}
+
+.sprite-symbol {
+    width: 16px;
+    height: 16px;
+    background-position: -80px -96px;
+}
+
+.sprite-syntax {
+    width: 16px;
+    height: 16px;
+    background-position: -96px -96px;
+}
+
+.sprite-table {
+    width: 16px;
+    height: 16px;
+    background-position: -112px 0;
+}
+
+.sprite-text {
+    width: 16px;
+    height: 16px;
+    background-position: -112px -16px;
+}
+
+.sprite-textTransform {
+    width: 16px;
+    height: 16px;
+    background-position: -112px -32px;
+}
+
+.sprite-ul {
+    width: 16px;
+    height: 16px;
+    background-position: -112px -48px;
+}
+
+.sprite-unindent {
+    width: 16px;
+    height: 16px;
+    background-position: -112px -64px;
+}
+
+.sprite-upload {
+    width: 16px;
+    height: 16px;
+    background-position: -112px -80px;
+}
+
+.sprite-web {
+    width: 16px;
+    height: 16px;
+    background-position: -112px -96px;
+}
+
+.sprite-youtube {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -112px;
+}
+

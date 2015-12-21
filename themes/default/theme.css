@@ -2,11 +2,11 @@
 div.texyla {
 	background: #EEE;
 }
-
+/*
 div.texyla ul.toolbar li span:hover {
 	background: url("button-vista.png") no-repeat 50% 50%;
 }
-
+*/
 div.texyla div.preview-wait {
 	background: url("loader.gif") 10px 10px no-repeat;
 }
